@@ -45,8 +45,6 @@ mkdir data logs plugins
 Run the following commands in your terminal:
 
 ```bash
-cd data_pipeline/airflow
-mkdir data logs plugins
 chmod -R 777 data/ logs/ dags/ plugins/
 cd ..
 docker-compose -f airflow/docker-compose.yaml build

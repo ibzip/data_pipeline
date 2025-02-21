@@ -108,8 +108,9 @@ files = sorted(files)  # Optionally sort for predictable order
 with DAG(
         dag_id="listenbrainz_dynamic_pipeline_sequential",
         default_args=default_args,
-        schedule_interval="@monthly",
+        schedule_interval=None,
         catchup=False,
+        is_paused_upon_creation=True
 ) as dag:
     schema = create_schema()
 
