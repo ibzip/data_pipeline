@@ -43,6 +43,7 @@ Run the following commands in your terminal:
 
 ```bash
 cd data_pipeline/airflow
+mkdir data logs plugins
 chmod -R 777 data/ logs/ dags/ plugins/
 cd ..
 docker-compose -f airflow/docker-compose.yaml build
@@ -129,7 +130,7 @@ To inspect and query the data, open the **DuckDB file** using a tool like **DBea
 
 - **File Naming:**
 
-  - Only files with the ``** extension** in `data/raw/` will be processed.
+  - Only files with the extension .json in `data/raw/` will be processed. You just need to rename your data files to add the json extension.
 
 - **Airflow DAG Graph:**
 
@@ -142,10 +143,3 @@ To inspect and query the data, open the **DuckDB file** using a tool like **DBea
   - Ensure **Docker** is properly set up.
 
 ---
-
-### Need Help?
-
-If you run into any issues, feel free to open an issue or reach out for support.
-
-🚀 Happy Coding!
-
