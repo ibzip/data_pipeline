@@ -10,49 +10,72 @@ on:
 
 jobs:
   test-macos:
-    runs-on: macos-latest  # Use macOS runner
+    runs-on: macos-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3  # Get the latest code from repo
+        uses: actions/checkout@v3
 
-      - name: Install Dependencies (QEMU, Colima, Docker)
+      - name: Install Dependencies
         run: |
-          brew install qemu  # Install QEMU first
+          brew install qemu
           brew install colima docker docker-compose
-          colima start --vm-type=qemu  # Force Colima to use qemu instead of vz
 
-      - name: Verify Docker and Docker Compose Installation
+      - name: Start Colima with explicit configuration
         run: |
-          docker --version
-          docker-compose --version
-
-      - name: Check Docker Daemon Status
-        run: |
-          while ! docker info >/dev/null 2>&1; do
-            echo "Waiting for Docker to start..."
-            sleep 5
+          # Stop any existing Colima instance
+          colima stop || true
+          colima delete || true
+          
+          # Start with explicit resource allocation and debug logging
+          colima start --vm-type=qemu --cpu 4 --memory 8 --disk 60 --verbose
+          
+          # Wait for Colima to be ready
+          for i in {1..30}; do
+            if colima status; then
+              echo "Colima is running!"
+              break
+            fi
+            echo "Waiting for Colima to start... (Attempt $i/30)"
+            sleep 10
           done
-          echo "Docker is up and running!"
 
-      - name: Build and Start Services with Specified Docker Compose File
+      - name: Verify Docker Installation
+        run: |
+          docker version
+          docker-compose version
+          docker info
+
+      - name: Build and Start Services
         run: |
           docker-compose -f airflow/docker-compose.yaml up --build -d
 
       - name: Check Running Containers
         run: |
-          docker ps -a  # Verify if containers are running
+          docker ps -a
 
-      - name: Run Airflow Webserver Health Check
+      - name: Run Airflow Health Check
         run: |
-          sleep 15  # Give Airflow some time to start
-          curl -f http://localhost:8080/health || exit 1  # Ensure Airflow webserver is running
+          for i in {1..30}; do
+            if curl -sf http://localhost:8080/health; then
+              echo "Airflow is healthy!"
+              exit 0
+            fi
+            echo "Waiting for Airflow... (Attempt $i/30)"
+            sleep 10
+          done
+          echo "Airflow failed to become healthy"
+          exit 1
 
       - name: Debug Logs (If Failure)
         if: failure()
         run: |
+          colima status
           docker-compose -f airflow/docker-compose.yaml logs
+          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
 
-      - name: Stop Containers
+      - name: Cleanup
         if: always()
         run: |
           docker-compose -f airflow/docker-compose.yaml down
+          colima stop
+          colima delete
