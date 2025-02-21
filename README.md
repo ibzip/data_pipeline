@@ -33,8 +33,11 @@ Follow these steps to run the pipeline using **Airflow** and check the progress 
 - Ensure your user has the appropriate permissions to run Docker commands.
 
 ### **2. Place Your Data Files**
-
-- Copy your `.json` data file(s) into the `airflow/data/raw` directory.
+```bash
+cd data_pipeline/airflow
+mkdir data logs plugins
+```
+- Copy your `.json` data file(s) into the `airflow/data/raw` directory. Create 'raw' directory if not existing.
 - Ensure the file names end with the `.json` extension.
 
 ### **3. Build and Run Airflow**
