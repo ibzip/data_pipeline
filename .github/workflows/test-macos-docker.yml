@@ -15,35 +15,27 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
+      - name: Install Docker Desktop and Docker Compose
         run: |
-          brew install qemu
-          brew install colima docker docker-compose
-
-      - name: Start Colima with explicit configuration
-        run: |
-          # Stop any existing Colima instance
-          colima stop || true
-          colima delete || true
-          
-          # Start with explicit resource allocation and debug logging
-          colima start --vm-type=qemu --cpu 4 --memory 8 --disk 60 --verbose
-          
-          # Wait for Colima to be ready
-          for i in {1..30}; do
-            if colima status; then
-              echo "Colima is running!"
-              break
-            fi
-            echo "Waiting for Colima to start... (Attempt $i/30)"
-            sleep 10
-          done
+          brew install --cask docker
+          brew install docker-compose
+          # Start Docker Desktop
+          open /Applications/Docker.app
+          # Wait for Docker Desktop to initialize. You may adjust the sleep duration if needed.
+          sleep 30
 
       - name: Verify Docker Installation
         run: |
-          docker version
-          docker-compose version
-          docker info
+          docker --version
+          docker-compose --version
+
+      - name: Wait for Docker Daemon to Start
+        run: |
+          while ! docker info >/dev/null 2>&1; do
+            echo "Waiting for Docker daemon to start..."
+            sleep 5
+          done
+          echo "Docker is up and running!"
 
       - name: Build and Start Services
         run: |
@@ -53,29 +45,17 @@ jobs:
         run: |
           docker ps -a
 
-      - name: Run Airflow Health Check
+      - name: Run Airflow Webserver Health Check
         run: |
-          for i in {1..30}; do
-            if curl -sf http://localhost:8080/health; then
-              echo "Airflow is healthy!"
-              exit 0
-            fi
-            echo "Waiting for Airflow... (Attempt $i/30)"
-            sleep 10
-          done
-          echo "Airflow failed to become healthy"
-          exit 1
+          sleep 15
+          curl -f http://localhost:8080/health || exit 1
 
-      - name: Debug Logs (If Failure)
+      - name: Debug Logs (if failure)
         if: failure()
         run: |
-          colima status
           docker-compose -f airflow/docker-compose.yaml logs
-          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
 
-      - name: Cleanup
+      - name: Stop Containers
         if: always()
         run: |
           docker-compose -f airflow/docker-compose.yaml down
-          colima stop
-          colima delete
