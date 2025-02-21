@@ -3,24 +3,22 @@ name: MacOS Docker Test
 on:
   push:
     branches:
-      - master  # Changed from main to master
+      - master  # Runs on master branch
   pull_request:
     branches:
-      - master  # Changed from main to master
+      - master  # Runs on master branch
 
 jobs:
   test-macos:
-    runs-on: macos-latest  # Use macOS as the test environment
+    runs-on: macos-latest  # Use macOS runner
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3  # Get the latest code from the repo
+        uses: actions/checkout@v3  # Get the latest code from repo
 
-      - name: Install Docker and Docker Compose
+      - name: Install Colima and Docker
         run: |
-          brew install --cask docker
-          brew install docker-compose
-          open /Applications/Docker.app  # Start Docker Desktop
-          sleep 30  # Wait for Docker to initialize
+          brew install colima docker docker-compose
+          colima start  # Start lightweight Docker runtime
 
       - name: Verify Docker and Docker Compose Installation
         run: |
@@ -35,7 +33,7 @@ jobs:
           done
           echo "Docker is up and running!"
 
-      - name: Build and Start Services with Specified Docker Compose File
+      - name: Build and Start Services
         run: |
           docker-compose -f airflow/docker-compose.yaml up --build -d
 
@@ -54,6 +52,6 @@ jobs:
           docker-compose -f airflow/docker-compose.yaml logs
 
       - name: Stop Containers
-        if: always()  # Always stop containers, even if tests fail
+        if: always()
         run: |
           docker-compose -f airflow/docker-compose.yaml down
