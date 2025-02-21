@@ -9221,3 +9221,118 @@ File Path                                PID  Runtime      # DAGs    # Errors  L
 /opt/airflow/dags/listenbrainz_dag.py   1790  0.00s             1           0  0.08s           2025-02-21T14:39:10
 ================================================================================
 [2025-02-21T14:40:03.614+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
+[2025-02-21T15:02:50.374+0000] {manager.py:483} INFO - Processing files using up to 2 processes at a time 
+[2025-02-21T15:02:50.375+0000] {manager.py:484} INFO - Process each file at most once every 30 seconds
+[2025-02-21T15:02:50.375+0000] {manager.py:486} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-02-21T15:02:50.375+0000] {manager.py:726} INFO - Searching for files in /opt/airflow/dags
+[2025-02-21T15:02:50.376+0000] {manager.py:729} INFO - There are 1 files in /opt/airflow/dags
+[2025-02-21T15:02:50.418+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/listenbrainz_dag.py    179  0.02s             0           0
+================================================================================
+[2025-02-21T15:03:20.516+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py                           1           0  0.25s           2025-02-21T15:02:50
+================================================================================
+[2025-02-21T15:03:50.829+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    237  0.00s             1           0  0.09s           2025-02-21T15:03:20
+================================================================================
+[2025-02-21T15:04:20.979+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    242  0.00s             1           0  0.08s           2025-02-21T15:03:50
+================================================================================
+[2025-02-21T15:04:51.083+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    247  0.00s             1           0  0.07s           2025-02-21T15:04:21
+================================================================================
+[2025-02-21T15:04:53.932+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
+[2025-02-21T15:24:41.137+0000] {manager.py:483} INFO - Processing files using up to 2 processes at a time 
+[2025-02-21T15:24:41.138+0000] {manager.py:484} INFO - Process each file at most once every 30 seconds
+[2025-02-21T15:24:41.138+0000] {manager.py:486} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-02-21T15:24:41.138+0000] {manager.py:726} INFO - Searching for files in /opt/airflow/dags
+[2025-02-21T15:24:41.139+0000] {manager.py:729} INFO - There are 1 files in /opt/airflow/dags
+[2025-02-21T15:24:41.181+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/listenbrainz_dag.py    177  0.02s             0           0
+================================================================================
+[2025-02-21T15:25:11.277+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py                           1           0  0.24s           2025-02-21T15:24:41
+================================================================================
+[2025-02-21T15:25:41.578+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    189  0.00s             1           0  0.08s           2025-02-21T15:25:11
+================================================================================
+[2025-02-21T15:26:11.721+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    194  0.00s             1           0  0.08s           2025-02-21T15:25:41
+================================================================================
+[2025-02-21T15:26:41.817+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    199  0.00s             1           0  0.07s           2025-02-21T15:26:11
+================================================================================
+[2025-02-21T15:27:11.962+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    251  0.00s             1           0  0.08s           2025-02-21T15:26:41
+================================================================================
+[2025-02-21T15:27:42.075+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    256  0.00s             1           0  0.08s           2025-02-21T15:27:12
+================================================================================
+[2025-02-21T15:28:12.214+0000] {manager.py:854} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/listenbrainz_dag.py    261  0.00s             1           0  0.08s           2025-02-21T15:27:42
+================================================================================
