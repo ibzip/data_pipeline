@@ -34,21 +34,28 @@ jobs:
           brew update
           brew install qemu
           brew install colima docker docker-compose
-          
-          # Check architecture and QEMU installation
-          arch
-          which qemu-system-aarch64
-          ls -l /opt/homebrew/share/qemu/
+
+      - name: Configure Lima
+        run: |
+          mkdir -p ~/.lima/default
+          cat > ~/.lima/default/lima.yaml << 'EOF'
+          images:
+          - location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img"
+            arch: "x86_64"
+          cpuType: "max"
+          vmType: "qemu"
+          rosetta:
+            enabled: true
+          EOF
 
       - name: Start Colima
         run: |
-          # Start with specific architecture and CPU settings
+          # Start with x86_64 architecture and software acceleration
           colima start \
-            --arch aarch64 \
+            --arch x86_64 \
             --cpu 2 \
             --memory 4 \
             --disk 40 \
-            --cpu-type host \
             --vm-type qemu \
             --verbose
           
