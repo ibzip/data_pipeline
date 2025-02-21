@@ -42,7 +42,7 @@ Follow these steps to run the pipeline using **Airflow** and check the progress 
 Run the following commands in your terminal:
 
 ```bash
-cd scalable/airflow
+cd data_pipeline/airflow
 chmod -R 777 data/ logs/ dags/ plugins/
 cd ..
 docker-compose -f airflow/docker-compose.yaml build
@@ -89,7 +89,7 @@ If you prefer to run the pipeline **without Airflow**, you can execute the main 
 Run the following commands in your terminal:
 
 ```bash
-cd scalable
+cd data_pipeline
 python src/pipeline/unified_pipeline.py --json-dir data/raw/
 ```
 
