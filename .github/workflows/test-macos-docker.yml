@@ -3,10 +3,10 @@ name: MacOS Docker Test
 on:
   push:
     branches:
-      - master  # Runs on master branch
+      - master
   pull_request:
     branches:
-      - master  # Runs on master branch
+      - master
 
 jobs:
   test-macos:
@@ -18,7 +18,7 @@ jobs:
       - name: Install Colima and Docker
         run: |
           brew install colima docker docker-compose
-          colima start  # Start lightweight Docker runtime
+          colima start --vm-type=qemu  # Force Colima to use qemu instead of vz
 
       - name: Verify Docker and Docker Compose Installation
         run: |
@@ -33,7 +33,7 @@ jobs:
           done
           echo "Docker is up and running!"
 
-      - name: Build and Start Services
+      - name: Build and Start Services with Specified Docker Compose File
         run: |
           docker-compose -f airflow/docker-compose.yaml up --build -d
 
