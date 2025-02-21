@@ -21,10 +21,9 @@ jobs:
           colima stop || true
           colima delete || true
           
-          # Clean up any existing socket files
+          # Clean up any existing files
           rm -rf ~/.colima
-          rm -rf /Users/runner/.colima/_lima/colima/qmp.sock
-          rm -rf /Users/runner/.colima/_lima/colima/ssh.sock
+          rm -rf /Users/runner/.colima
           
           # Create fresh directory
           mkdir -p ~/.colima
@@ -35,11 +34,22 @@ jobs:
           brew update
           brew install qemu
           brew install colima docker docker-compose
+          
+          # Check architecture and QEMU installation
+          arch
+          which qemu-system-aarch64
+          ls -l /opt/homebrew/share/qemu/
 
       - name: Start Colima
         run: |
-          # Start with minimal configuration first
-          colima start --vm-type=qemu --cpu 2 --memory 4 --disk 40 --verbose
+          # Start with specific architecture settings
+          colima start --vm-type=qemu \
+            --arch aarch64 \
+            --cpu 2 \
+            --memory 4 \
+            --disk 40 \
+            --vm-options="-M virt,highmem=off" \
+            --verbose
           
           # Wait for Colima to be ready
           for i in {1..30}; do
@@ -111,3 +121,4 @@ jobs:
           colima stop || true
           colima delete || true
           rm -rf ~/.colima || true
+          rm -rf /Users/runner/.colima || true
