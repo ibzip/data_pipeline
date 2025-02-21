@@ -15,27 +15,62 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install Docker Desktop and Docker Compose
+      - name: Clean existing Colima files
         run: |
-          brew install --cask docker
-          brew install docker-compose
-          # Start Docker Desktop
-          open /Applications/Docker.app
-          # Wait for Docker Desktop to initialize. You may adjust the sleep duration if needed.
-          sleep 30
+          # Ensure Colima is stopped
+          colima stop || true
+          colima delete || true
+          
+          # Clean up any existing socket files
+          rm -rf ~/.colima
+          rm -rf /Users/runner/.colima/_lima/colima/qmp.sock
+          rm -rf /Users/runner/.colima/_lima/colima/ssh.sock
+          
+          # Create fresh directory
+          mkdir -p ~/.colima
+
+      - name: Install Dependencies
+        run: |
+          brew uninstall --force qemu colima docker docker-compose || true
+          brew update
+          brew install qemu
+          brew install colima docker docker-compose
+
+      - name: Start Colima
+        run: |
+          # Start with minimal configuration first
+          colima start --vm-type=qemu --cpu 2 --memory 4 --disk 40 --verbose
+          
+          # Wait for Colima to be ready
+          for i in {1..30}; do
+            if colima status; then
+              echo "Colima is running!"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "Colima failed to start"
+              cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
+              exit 1
+            fi
+            echo "Waiting for Colima to start... (Attempt $i/30)"
+            sleep 10
+          done
 
       - name: Verify Docker Installation
+        timeout-minutes: 5
         run: |
-          docker --version
-          docker-compose --version
-
-      - name: Wait for Docker Daemon to Start
-        run: |
-          while ! docker info >/dev/null 2>&1; do
-            echo "Waiting for Docker daemon to start..."
-            sleep 5
+          for i in {1..30}; do
+            if docker version && docker-compose version && docker info; then
+              echo "Docker is running!"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "Docker failed to initialize"
+              exit 1
+            fi
+            echo "Waiting for Docker... (Attempt $i/30)"
+            sleep 10
           done
-          echo "Docker is up and running!"
 
       - name: Build and Start Services
         run: |
@@ -45,17 +80,34 @@ jobs:
         run: |
           docker ps -a
 
-      - name: Run Airflow Webserver Health Check
+      - name: Run Airflow Health Check
         run: |
-          sleep 15
-          curl -f http://localhost:8080/health || exit 1
+          for i in {1..30}; do
+            if curl -sf http://localhost:8080/health; then
+              echo "Airflow is healthy!"
+              exit 0
+            fi
+            if [ $i -eq 30 ]; then
+              echo "Airflow failed to become healthy"
+              exit 1
+            fi
+            echo "Waiting for Airflow... (Attempt $i/30)"
+            sleep 10
+          done
 
-      - name: Debug Logs (if failure)
+      - name: Debug Logs (If Failure)
         if: failure()
         run: |
-          docker-compose -f airflow/docker-compose.yaml logs
+          colima status || true
+          docker-compose -f airflow/docker-compose.yaml logs || true
+          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
+          ls -la ~/.colima || true
+          ls -la /Users/runner/.colima/_lima/colima/ || true
 
-      - name: Stop Containers
+      - name: Cleanup
         if: always()
         run: |
-          docker-compose -f airflow/docker-compose.yaml down
+          docker-compose -f airflow/docker-compose.yaml down || true
+          colima stop || true
+          colima delete || true
+          rm -rf ~/.colima || true
