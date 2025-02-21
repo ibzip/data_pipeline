@@ -107,12 +107,12 @@ Run the following command in your terminal:
 python src/pipeline/unified_pipeline.py --json-dir data/raw/
 ```
 
-### **3. Monitor the Process**
+### **4. Monitor the Process**
 
 - The script will process each JSON file and create the **DuckDB** database.
 - Once finished, the file `listenbrainz.duckdb` will be available in `data/`.
 
-### **4. Explore the Database**
+### **5. Explore the Database**
 
 - Open the `listenbrainz.duckdb` file using a **database viewer** like [DBeaver](https://dbeaver.io/).
 
