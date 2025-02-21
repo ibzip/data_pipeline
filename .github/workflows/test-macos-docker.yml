@@ -42,13 +42,14 @@ jobs:
 
       - name: Start Colima
         run: |
-          # Start with specific architecture settings
-          colima start --vm-type=qemu \
+          # Start with specific architecture and CPU settings
+          colima start \
             --arch aarch64 \
             --cpu 2 \
             --memory 4 \
             --disk 40 \
-            --vm-options="-M virt,highmem=off" \
+            --cpu-type host \
+            --vm-type qemu \
             --verbose
           
           # Wait for Colima to be ready
