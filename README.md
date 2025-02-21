@@ -90,14 +90,14 @@ mkdir data/raw
 ```
 - Move your `.json` file(s) into the `data/raw` directory.
 
-Run the following command:
-```bash
-pip install -r requirements.txt
-```
 
 ### **2. install requirements**
 - Create a virtual python env or use an existing one. Activate the env.
 
+Run the following command:
+```bash
+pip install -r requirements.txt
+```
 
 ### **3. Run the Pipeline**
 
