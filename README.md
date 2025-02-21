@@ -83,15 +83,18 @@ docker-compose -f airflow/docker-compose.yaml up
 If you prefer to run the pipeline **without Airflow**, you can execute the main Python file:
 
 ### **1. Place Your Data Files**
-
+```bash
+cd data_pipeline
+mkdir data
+mkdir data/raw
+```
 - Move your `.json` file(s) into the `data/raw` directory.
 
 ### **2. Run the Pipeline**
 
-Run the following commands in your terminal:
+Run the following command in your terminal:
 
 ```bash
-cd data_pipeline
 python src/pipeline/unified_pipeline.py --json-dir data/raw/
 ```
 
