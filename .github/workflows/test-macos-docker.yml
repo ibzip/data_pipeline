@@ -48,6 +48,23 @@ jobs:
             enabled: true
           EOF
 
+      - name: Setup Airflow directories
+        run: |
+          # Create required directories if they don't exist
+          mkdir -p airflow/logs
+          mkdir -p airflow/dags
+          mkdir -p airflow/data
+          mkdir -p airflow/plugins
+          
+          # Set permissions
+          chmod -R 777 airflow/logs
+          chmod -R 777 airflow/dags
+          chmod -R 777 airflow/data
+          chmod -R 777 airflow/plugins
+          
+          # Show permissions for verification
+          ls -la airflow/
+
       - name: Start Colima
         run: |
           # Start with x86_64 architecture and software acceleration
@@ -92,7 +109,14 @@ jobs:
 
       - name: Build and Start Services
         run: |
+          # Show directory permissions before starting
+          ls -la airflow/
+          
           docker-compose -f airflow/docker-compose.yaml up --build -d
+          
+          # Show running containers and their mounted volumes
+          docker-compose -f airflow/docker-compose.yaml ps
+          docker volume ls
 
       - name: Check Running Containers
         run: |
@@ -121,6 +145,7 @@ jobs:
           cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
           ls -la ~/.colima || true
           ls -la /Users/runner/.colima/_lima/colima/ || true
+          ls -la airflow/ || true
 
       - name: Cleanup
         if: always()
