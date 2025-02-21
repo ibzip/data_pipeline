@@ -1,0 +1,37 @@
+[2025-02-21T13:57:36.044+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load manual__2025-02-21T13:52:30.489409+00:00 map_index=0 [queued]>
+[2025-02-21T13:57:36.053+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load manual__2025-02-21T13:52:30.489409+00:00 map_index=0 [queued]>
+[2025-02-21T13:57:36.054+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-21T13:57:36.054+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 2
+[2025-02-21T13:57:36.054+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-21T13:57:36.064+0000] {taskinstance.py:1300} INFO - Executing <Task(_PythonDecoratedOperator): process_file.load> on 2025-02-21 13:52:30.489409+00:00
+[2025-02-21T13:57:36.069+0000] {standard_task_runner.py:55} INFO - Started process 743 to run task
+[2025-02-21T13:57:36.071+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'listenbrainz_dynamic_pipeline', 'process_file.load', 'manual__2025-02-21T13:52:30.489409+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/listenbrainz_dag.py', '--cfg-path', '/tmp/tmpd8eyjj4o', '--map-index', '0']
+[2025-02-21T13:57:36.072+0000] {standard_task_runner.py:83} INFO - Job 20: Subtask process_file.load
+[2025-02-21T13:57:36.128+0000] {task_command.py:388} INFO - Running <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load manual__2025-02-21T13:52:30.489409+00:00 map_index=0 [running]> on host 930207e07779
+[2025-02-21T13:57:36.192+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=listenbrainz_dynamic_pipeline
+AIRFLOW_CTX_TASK_ID=process_file.load
+AIRFLOW_CTX_EXECUTION_DATE=2025-02-21T13:52:30.489409+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-02-21T13:52:30.489409+00:00
+[2025-02-21T13:57:36.637+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'user_id'
+[2025-02-21T13:57:36.638+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'track_id'
+[2025-02-21T13:57:36.638+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'track_name'
+[2025-02-21T13:57:36.639+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'artist_name'
+[2025-02-21T13:57:36.651+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/duckdb_engine/__init__.py:183 DuckDBEngineWarning: duckdb-engine doesn't yet support reflection on indices
+[2025-02-21T13:57:43.434+0000] {unified_pipeline.py:126} INFO - Chunk 1: inserted 50000 rows into stg_listens, total 50000.
+[2025-02-21T13:57:49.867+0000] {unified_pipeline.py:126} INFO - Chunk 2: inserted 50000 rows into stg_listens, total 100000.
+[2025-02-21T13:57:56.534+0000] {unified_pipeline.py:126} INFO - Chunk 3: inserted 50000 rows into stg_listens, total 150000.
+[2025-02-21T13:58:02.573+0000] {unified_pipeline.py:126} INFO - Chunk 4: inserted 50000 rows into stg_listens, total 200000.
+[2025-02-21T13:58:08.617+0000] {unified_pipeline.py:126} INFO - Chunk 5: inserted 50000 rows into stg_listens, total 250000.
+[2025-02-21T13:58:14.885+0000] {unified_pipeline.py:126} INFO - Chunk 6: inserted 50000 rows into stg_listens, total 300000.
+[2025-02-21T13:58:18.901+0000] {unified_pipeline.py:126} INFO - Chunk 7: inserted 33034 rows into stg_listens, total 333034.
+[2025-02-21T13:58:18.902+0000] {unified_pipeline.py:128} INFO - All chunks inserted into stg_listens. Total 333034 rows.
+[2025-02-21T13:58:18.903+0000] {listenbrainz_dag.py:88} INFO - Loaded CSV /data/intermediate/MappedArgument(_input=DictOfListsExpandInput(value={'file_path': XComArg(<Task(_PythonDecoratedOperator): list_new_files>)}), _key='file_path').csv into staging table.
+[2025-02-21T13:58:18.903+0000] {python.py:177} INFO - Done. Returned value was: None
+[2025-02-21T13:58:18.913+0000] {taskinstance.py:1323} INFO - Marking task as SUCCESS. dag_id=listenbrainz_dynamic_pipeline, task_id=process_file.load, map_index=0, execution_date=20250221T135230, start_date=20250221T135736, end_date=20250221T135818
+[2025-02-21T13:58:18.952+0000] {local_task_job.py:208} INFO - Task exited with return code 0
+[2025-02-21T13:58:18.990+0000] {taskinstance.py:2578} INFO - 1 downstream tasks scheduled from follow-on schedule check

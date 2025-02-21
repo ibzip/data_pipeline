@@ -1,0 +1,25 @@
+[2025-02-21T14:30:46.372+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: listenbrainz_dynamic_pipeline_sequential.process_file__2.upsert scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2025-02-21T14:30:46.379+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: listenbrainz_dynamic_pipeline_sequential.process_file__2.upsert scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2025-02-21T14:30:46.379+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-21T14:30:46.379+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 2
+[2025-02-21T14:30:46.379+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-21T14:30:46.388+0000] {taskinstance.py:1300} INFO - Executing <Task(_PythonDecoratedOperator): process_file__2.upsert> on 2025-01-01 00:00:00+00:00
+[2025-02-21T14:30:46.392+0000] {standard_task_runner.py:55} INFO - Started process 736 to run task
+[2025-02-21T14:30:46.393+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'listenbrainz_dynamic_pipeline_sequential', 'process_file__2.upsert', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '31', '--raw', '--subdir', 'DAGS_FOLDER/listenbrainz_dag.py', '--cfg-path', '/tmp/tmp3pph82z9']
+[2025-02-21T14:30:46.394+0000] {standard_task_runner.py:83} INFO - Job 31: Subtask process_file__2.upsert
+[2025-02-21T14:30:46.442+0000] {task_command.py:388} INFO - Running <TaskInstance: listenbrainz_dynamic_pipeline_sequential.process_file__2.upsert scheduled__2025-01-01T00:00:00+00:00 [running]> on host 3c1a83f589ff
+[2025-02-21T14:30:46.499+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=listenbrainz_dynamic_pipeline_sequential
+AIRFLOW_CTX_TASK_ID=process_file__2.upsert
+AIRFLOW_CTX_EXECUTION_DATE=2025-01-01T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2025-01-01T00:00:00+00:00
+[2025-02-21T14:30:46.829+0000] {unified_pipeline.py:220} INFO - Upserted dim_user and dim_track tables.
+[2025-02-21T14:30:46.830+0000] {listenbrainz_dag.py:85} INFO - Upserted dimension tables.
+[2025-02-21T14:30:46.830+0000] {python.py:177} INFO - Done. Returned value was: None
+[2025-02-21T14:30:46.839+0000] {taskinstance.py:1323} INFO - Marking task as SUCCESS. dag_id=listenbrainz_dynamic_pipeline_sequential, task_id=process_file__2.upsert, execution_date=20250101T000000, start_date=20250221T143046, end_date=20250221T143046
+[2025-02-21T14:30:46.886+0000] {local_task_job.py:208} INFO - Task exited with return code 0
+[2025-02-21T14:30:46.904+0000] {taskinstance.py:2578} INFO - 1 downstream tasks scheduled from follow-on schedule check

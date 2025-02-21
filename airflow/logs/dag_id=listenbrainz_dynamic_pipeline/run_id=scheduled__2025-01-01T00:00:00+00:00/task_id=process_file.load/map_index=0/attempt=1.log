@@ -1,0 +1,129 @@
+[2025-02-21T14:05:05.155+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load scheduled__2025-01-01T00:00:00+00:00 map_index=0 [queued]>
+[2025-02-21T14:05:05.164+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load scheduled__2025-01-01T00:00:00+00:00 map_index=0 [queued]>
+[2025-02-21T14:05:05.164+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-21T14:05:05.164+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 2
+[2025-02-21T14:05:05.164+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-21T14:05:05.174+0000] {taskinstance.py:1300} INFO - Executing <Task(_PythonDecoratedOperator): process_file.load> on 2025-01-01 00:00:00+00:00
+[2025-02-21T14:05:05.177+0000] {standard_task_runner.py:55} INFO - Started process 240 to run task
+[2025-02-21T14:05:05.179+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'listenbrainz_dynamic_pipeline', 'process_file.load', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/listenbrainz_dag.py', '--cfg-path', '/tmp/tmp5f2n00hw', '--map-index', '0']
+[2025-02-21T14:05:05.180+0000] {standard_task_runner.py:83} INFO - Job 7: Subtask process_file.load
+[2025-02-21T14:05:05.229+0000] {task_command.py:388} INFO - Running <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load scheduled__2025-01-01T00:00:00+00:00 map_index=0 [running]> on host 5b6f74597018
+[2025-02-21T14:05:05.285+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=listenbrainz_dynamic_pipeline
+AIRFLOW_CTX_TASK_ID=process_file.load
+AIRFLOW_CTX_EXECUTION_DATE=2025-01-01T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2025-01-01T00:00:00+00:00
+[2025-02-21T14:05:05.653+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'user_id'
+[2025-02-21T14:05:05.653+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'track_id'
+[2025-02-21T14:05:05.654+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'track_name'
+[2025-02-21T14:05:05.654+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'artist_name'
+[2025-02-21T14:05:05.664+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/duckdb_engine/__init__.py:183 DuckDBEngineWarning: duckdb-engine doesn't yet support reflection on indices
+[2025-02-21T14:05:11.264+0000] {unified_pipeline.py:126} INFO - Chunk 1: inserted 50000 rows into stg_listens, total 50000.
+[2025-02-21T14:05:17.006+0000] {unified_pipeline.py:126} INFO - Chunk 2: inserted 50000 rows into stg_listens, total 100000.
+[2025-02-21T14:05:22.766+0000] {unified_pipeline.py:126} INFO - Chunk 3: inserted 50000 rows into stg_listens, total 150000.
+[2025-02-21T14:05:28.702+0000] {unified_pipeline.py:126} INFO - Chunk 4: inserted 50000 rows into stg_listens, total 200000.
+[2025-02-21T14:05:34.509+0000] {unified_pipeline.py:126} INFO - Chunk 5: inserted 50000 rows into stg_listens, total 250000.
+[2025-02-21T14:05:40.281+0000] {unified_pipeline.py:126} INFO - Chunk 6: inserted 50000 rows into stg_listens, total 300000.
+[2025-02-21T14:05:44.220+0000] {unified_pipeline.py:126} INFO - Chunk 7: inserted 33034 rows into stg_listens, total 333034.
+[2025-02-21T14:05:44.220+0000] {unified_pipeline.py:128} INFO - All chunks inserted into stg_listens. Total 333034 rows.
+[2025-02-21T14:05:44.222+0000] {listenbrainz_dag.py:90} INFO - Loaded CSV /data/intermediate/MappedArgument(_input=DictOfListsExpandInput(value={'file_path': XComArg(<Task(_PythonDecoratedOperator): list_new_files>)}), _key='file_path').csv into staging table.
+[2025-02-21T14:05:44.222+0000] {python.py:177} INFO - Done. Returned value was: None
+[2025-02-21T14:05:44.233+0000] {taskinstance.py:1323} INFO - Marking task as SUCCESS. dag_id=listenbrainz_dynamic_pipeline, task_id=process_file.load, map_index=0, execution_date=20250101T000000, start_date=20250221T140505, end_date=20250221T140544
+[2025-02-21T14:05:44.282+0000] {local_task_job.py:208} INFO - Task exited with return code 0
+[2025-02-21T14:05:44.320+0000] {taskinstance.py:2578} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-21T14:25:36.300+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load scheduled__2025-01-01T00:00:00+00:00 map_index=0 [queued]>
+[2025-02-21T14:25:36.310+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load scheduled__2025-01-01T00:00:00+00:00 map_index=0 [queued]>
+[2025-02-21T14:25:36.310+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-21T14:25:36.311+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 2
+[2025-02-21T14:25:36.311+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-21T14:25:36.322+0000] {taskinstance.py:1300} INFO - Executing <Task(_PythonDecoratedOperator): process_file.load> on 2025-01-01 00:00:00+00:00
+[2025-02-21T14:25:36.327+0000] {standard_task_runner.py:55} INFO - Started process 343 to run task
+[2025-02-21T14:25:36.328+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'listenbrainz_dynamic_pipeline', 'process_file.load', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/listenbrainz_dag.py', '--cfg-path', '/tmp/tmpgn05v752', '--map-index', '0']
+[2025-02-21T14:25:36.330+0000] {standard_task_runner.py:83} INFO - Job 14: Subtask process_file.load
+[2025-02-21T14:25:36.382+0000] {task_command.py:388} INFO - Running <TaskInstance: listenbrainz_dynamic_pipeline.process_file.load scheduled__2025-01-01T00:00:00+00:00 map_index=0 [running]> on host 67bebaff4560
+[2025-02-21T14:25:36.436+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=listenbrainz_dynamic_pipeline
+AIRFLOW_CTX_TASK_ID=process_file.load
+AIRFLOW_CTX_EXECUTION_DATE=2025-01-01T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2025-01-01T00:00:00+00:00
+[2025-02-21T14:25:36.827+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'user_id'
+[2025-02-21T14:25:36.828+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'track_id'
+[2025-02-21T14:25:36.828+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'track_name'
+[2025-02-21T14:25:36.829+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/pandas/io/sql.py:1809 SAWarning: Did not recognize type 'varchar' of column 'artist_name'
+[2025-02-21T14:25:36.841+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/duckdb_engine/__init__.py:183 DuckDBEngineWarning: duckdb-engine doesn't yet support reflection on indices
+[2025-02-21T14:25:42.766+0000] {unified_pipeline.py:126} INFO - Chunk 1: inserted 50000 rows into stg_listens, total 50000.
+[2025-02-21T14:25:49.207+0000] {unified_pipeline.py:126} INFO - Chunk 2: inserted 50000 rows into stg_listens, total 100000.
+[2025-02-21T14:25:55.516+0000] {unified_pipeline.py:126} INFO - Chunk 3: inserted 50000 rows into stg_listens, total 150000.
+[2025-02-21T14:26:02.006+0000] {unified_pipeline.py:126} INFO - Chunk 4: inserted 50000 rows into stg_listens, total 200000.
+[2025-02-21T14:26:08.682+0000] {unified_pipeline.py:126} INFO - Chunk 5: inserted 50000 rows into stg_listens, total 250000.
+[2025-02-21T14:26:09.312+0000] {local_task_job.py:112} ERROR - Received SIGTERM. Terminating subprocesses
+[2025-02-21T14:26:09.314+0000] {process_utils.py:133} INFO - Sending Signals.SIGTERM to group 343. PIDs of all processes in the group: [343]
+[2025-02-21T14:26:09.314+0000] {process_utils.py:84} INFO - Sending the signal Signals.SIGTERM to group 343
+[2025-02-21T14:26:09.315+0000] {taskinstance.py:1479} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-02-21T14:26:09.317+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1481, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/decorators/base.py", line 217, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/listenbrainz_dag.py", line 82, in load_task
+    load_csv_to_stg(engine, csv_path, "stg_listens", chunksize=50000)
+  File "/opt/airflow/src/pipeline/unified_pipeline.py", line 124, in load_csv_to_stg
+    chunk.to_sql(stg_table, db_engine, if_exists='append', index=False)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1770, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1340, in insert_records
+    table.insert(chunksize=chunksize, method=method)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 967, in insert
+    exec_insert(conn, keys, chunk_iter)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 882, in _execute_insert
+    conn.execute(self.table.insert(), data)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/future/engine.py", line 281, in execute
+    statement, parameters, execution_options or NO_OPTIONS
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 335, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1944, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2128, in _handle_dbapi_exception
+    util.raise_(exc_info[1], with_traceback=exc_info[2])
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1881, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/duckdb_engine/__init__.py", line 499, in do_executemany
+    self, cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 733, in do_executemany
+    cursor.executemany(statement, parameters)
+  File "/home/airflow/.local/lib/python3.7/site-packages/duckdb_engine/__init__.py", line 141, in executemany
+    self.__c.executemany(statement, parameters)
+RuntimeError: Query interrupted
+[2025-02-21T14:26:09.339+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=listenbrainz_dynamic_pipeline, task_id=process_file.load, map_index=0, execution_date=20250101T000000, start_date=20250221T142536, end_date=20250221T142609
+[2025-02-21T14:26:09.357+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 14 for task process_file.load (Query interrupted; 343)
+[2025-02-21T14:26:09.407+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=343, status='terminated', exitcode=1, started='14:25:36') (343) terminated with exit code 1
+[2025-02-21T14:26:09.407+0000] {local_task_job.py:208} INFO - Task exited with return code 143
+[2025-02-21T14:26:09.463+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check
