@@ -96,7 +96,7 @@ pip install -r requirements.txt
 ```
 
 ### **2. install requirements**
-- Create a virtual python env or use an existing one.
+- Create a virtual python env or use an existing one. Activate the env.
 
 
 ### **3. Run the Pipeline**
