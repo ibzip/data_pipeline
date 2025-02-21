@@ -15,8 +15,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3  # Get the latest code from repo
 
-      - name: Install Colima and Docker
+      - name: Install Dependencies (QEMU, Colima, Docker)
         run: |
+          brew install qemu  # Install QEMU first
           brew install colima docker docker-compose
           colima start --vm-type=qemu  # Force Colima to use qemu instead of vz
 
