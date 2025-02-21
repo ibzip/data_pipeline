@@ -1,0 +1,40 @@
+name: MacOS Docker Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-macos:
+    runs-on: macos-latest  # Use macOS as the environment
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3  # Get the latest code from the repo
+
+      - name: Install Docker
+        run: |
+          brew install --cask docker
+          open /Applications/Docker.app
+          sleep 10  # Give Docker some time to start
+
+      - name: Build and Start Services
+        run: |
+          docker-compose -f airflow/docker-compose.yaml  up --build -d
+
+      - name: Check Running Containers
+        run: |
+          docker ps -a  # Verify if containers are running
+
+      - name: Run Airflow Webserver Health Check
+        run: |
+          sleep 60  # Give Airflow some time to start
+          curl -f http://localhost:8080/health || exit 1  # Ensure Airflow webserver is running
+
+      - name: Stop Containers
+        if: always()  # Always stop containers, even if tests fail
+        run: |
+          docker-compose f airflow/docker-compose.yaml down
