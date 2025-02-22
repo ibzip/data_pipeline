@@ -2,113 +2,144 @@ name: MacOS Docker Test
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   test-macos:
     runs-on: macos-latest
-    env:
-      DOCKER_BUILDKIT: 1
-      COMPOSE_DOCKER_CLI_BUILD: 1
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        with:
-          platforms: linux/amd64,linux/arm64
-
-      - name: Clean existing Colima setup
+      - name: Clean existing Colima files
         run: |
           colima stop || true
           colima delete || true
           rm -rf ~/.colima
+          rm -rf /Users/runner/.colima
           mkdir -p ~/.colima
 
       - name: Install Dependencies
         run: |
-          brew install colima docker docker-compose qemu
+          brew uninstall --force qemu colima docker docker-compose || true
+          brew update
+          brew install qemu
+          brew install colima docker docker-compose
+
+      - name: Configure Lima
+        run: |
+          mkdir -p ~/.lima/default
+          # IMPORTANT: Remove cpuType: "max" and rosetta: { enabled: true }
+          # to avoid CPU instruction mismatches under QEMU
+          cat > ~/.lima/default/lima.yaml << 'EOF'
+images:
+- location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img"
+  arch: "x86_64"
+vmType: "qemu"
+EOF
+
+      - name: Setup Airflow directories
+        run: |
+          mkdir -p airflow/logs
+          mkdir -p airflow/dags
+          mkdir -p airflow/data
+          mkdir -p airflow/plugins
+          chmod -R 777 airflow/logs
+          chmod -R 777 airflow/dags
+          chmod -R 777 airflow/data
+          chmod -R 777 airflow/plugins
+          ls -la airflow/
 
       - name: Start Colima
         run: |
-          colima start --cpu 4 --memory 8 --disk 60 --arch amd64 --vm-type qemu
-          
-          # Wait for Colima to be ready
+          colima start \
+            --arch x86_64 \
+            --cpu 2 \
+            --memory 4 \
+            --disk 40 \
+            --vm-type qemu \
+            --verbose
+
+          # Wait up to ~5 minutes for Colima to get fully ready
           for i in {1..30}; do
             if colima status; then
               echo "Colima is running!"
               break
             fi
-            echo "Waiting for Colima... (Attempt $i/30)"
+            if [ $i -eq 30 ]; then
+              echo "Colima failed to start"
+              cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
+              exit 1
+            fi
+            echo "Waiting for Colima to start... (Attempt $i/30)"
             sleep 10
           done
 
-      - name: Setup directories
+      - name: Use Colima Docker Context
         run: |
-          mkdir -p airflow/logs airflow/dags airflow/data airflow/plugins
-          chmod -R 777 airflow/
+          # Make sure our docker CLI calls point to Colima
+          docker context use colima
 
-      - name: Build images
+      - name: Verify Docker Installation
+        timeout-minutes: 5
         run: |
-          docker buildx create --use
-          docker buildx build \
-            --platform linux/amd64 \
-            --load \
-            -t custom-airflow:latest \
-            -f airflow/Dockerfile .
-
-      - name: Start services
-        run: |
-          docker-compose -f airflow/docker-compose.yaml up -d
-          
-          # Monitor startup
-          for i in {1..60}; do
-            if docker-compose -f airflow/docker-compose.yaml ps | grep -q "airflow-init.*Exit 0"; then
-              echo "Initialization completed successfully!"
+          for i in {1..30}; do
+            if docker version && docker-compose version && docker info; then
+              echo "Docker is running!"
               break
             fi
-            echo "Waiting for initialization... (Attempt $i/60)"
-            docker-compose -f airflow/docker-compose.yaml logs airflow-init
+            if [ $i -eq 30 ]; then
+              echo "Docker failed to initialize"
+              exit 1
+            fi
+            echo "Waiting for Docker... (Attempt $i/30)"
             sleep 10
           done
 
-      - name: Check services
+      - name: Build and Start Services
         run: |
-          docker ps -a
-          docker-compose -f airflow/docker-compose.yaml logs
+          ls -la airflow/
+          # Build and run your Airflow containers
+          docker-compose -f airflow/docker-compose.yaml up --build -d
+          docker-compose -f airflow/docker-compose.yaml ps
+          docker volume ls
 
-      - name: Verify Airflow
+      - name: Check Running Containers
+        run: docker ps -a
+
+      - name: Run Airflow Health Check
         run: |
+          # Poll /health until it's good or fail
           for i in {1..30}; do
             if curl -sf http://localhost:8080/health; then
               echo "Airflow is healthy!"
               exit 0
             fi
+            if [ $i -eq 30 ]; then
+              echo "Airflow failed to become healthy"
+              exit 1
+            fi
             echo "Waiting for Airflow... (Attempt $i/30)"
             sleep 10
           done
 
-      - name: Debug (on failure)
+      - name: Debug Logs (If Failure)
         if: failure()
         run: |
-          echo "--- Docker Info ---"
-          docker info
-          echo "--- Container Status ---"
-          docker ps -a
-          echo "--- Init Container Logs ---"
-          docker-compose -f airflow/docker-compose.yaml logs airflow-init
-          echo "--- All Logs ---"
-          docker-compose -f airflow/docker-compose.yaml logs
+          colima status || true
+          docker-compose -f airflow/docker-compose.yaml logs || true
+          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
+          ls -la ~/.colima || true
+          ls -la /Users/runner/.colima/_lima/colima/ || true
+          ls -la airflow/ || true
 
       - name: Cleanup
         if: always()
         run: |
-          docker-compose -f airflow/docker-compose.yaml down -v
-          colima stop
-          colima delete
+          docker-compose -f airflow/docker-compose.yaml down || true
+          colima stop || true
+          colima delete || true
+          rm -rf ~/.colima || true
+          rm -rf /Users/runner/.colima || true
