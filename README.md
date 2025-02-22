@@ -11,6 +11,7 @@ This repository contains a scalable data ingestion pipeline for ListenBrainz dat
 - [Running the Pipeline via Python Main File](#running-the-pipeline-via-python-main-file)
 - [Exploring the Database](#exploring-the-database)
 - [Notes](#notes)
+- [Data Analysis](#analysis)
 
 ---
 
@@ -36,6 +37,7 @@ Follow these steps to run the pipeline using **Airflow** and check the progress 
 ```bash
 cd data_pipeline/airflow
 mkdir data logs plugins
+mkdir data/raw
 ```
 - Copy your `.json` data file(s) into the `airflow/data/raw` directory. Create 'raw' directory if not existing.
 - Ensure the file names end with the `.json` extension.
@@ -156,3 +158,9 @@ To inspect and query the data, open the **DuckDB file** using a tool like **DBea
   - Ensure **Docker** is properly set up.
 
 ---
+
+## Analysis
+- Go to data_pipeline/sql/queries folder.
+- Here you will find test_queries.sql for all 5 queries. You may run these queries in dbeaver/something-else with the produced duckdb file to see the results.
+- You may also check the results of these queries in query_results.txt file.
+- Additionally, you can also run offline_queries.py in data_pipeline/scripts folder to get the results with use of python logic to compare them against the DB results for validity.

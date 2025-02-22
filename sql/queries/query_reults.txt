@@ -1,0 +1,920 @@
+-- 1. Who are the top 10 users with respect to number of songs listened to?
+
+|user_id       |num_listens|
+|--------------|-----------|
+|hds           |46,885     |
+|Groschi       |14,959     |
+|Silent Singer |13,005     |
+|phdnk         |12,861     |
+|6d6f7274686f6e|11,544     |
+|reverbel      |8,398      |
+|Cl�psHydra    |8,318      |
+|InvincibleAsia|7,804      |
+|cimualte      |7,356      |
+|inhji         |6,349      |
+
+
+-- 2. How Many Users Listened to a Song on March 1, 2019?
+
+|num_users|
+|---------|
+|75       |
+
+-- 3. First Song Listened to by Each User
+
+|user_id              |track_name                                                      |artist_name                                                      |listened_at            |
+|---------------------|----------------------------------------------------------------|-----------------------------------------------------------------|-----------------------|
+|m0rth0n              |thru the void                                                   |black dresses                                                    |2019-04-12 22:01:49.000|
+|mankymusic           |lemniscaat: refrain                                             |simeon ten holt                                                  |2019-01-01 02:08:44.000|
+|meisterhauns         |s.a.d.o.s. (feat. jaq)                                          |dexter                                                           |2019-02-26 22:12:31.000|
+|miketwiss            |what happened (mastered)                                        |mike twiss                                                       |2019-02-24 21:26:31.000|
+|milk                 |mind ecology                                                    |shakti with john mclaughlin                                      |2019-01-14 09:18:12.000|
+|reverbel             |revolution 1                                                    |the beatles                                                      |2019-01-01 01:14:51.000|
+|marcianofonseca      |trip                                                            |ella mai                                                         |2019-01-19 14:50:55.000|
+|mnmontero            |viaje al infinito                                               |riccie oriach                                                    |2019-02-27 15:44:39.000|
+|yellams              |hold you under (feat. marcus bridge)                            |polaris                                                          |2019-01-02 09:37:47.000|
+|clinford86           |hush little baby                                                |beth mclaughlin                                                  |2019-01-01 18:06:37.000|
+|inhji                |cthulhu                                                         |cryo chamber collaboration                                       |2019-01-01 00:24:08.000|
+|arcadian99           |crying                                                          |strawpeople                                                      |2019-02-21 12:23:16.000|
+|cirfis               |crossing the frame                                              |coheed and cambria                                               |2019-01-13 02:23:07.000|
+|kingjan1999          |bratislava                                                      |faber                                                            |2019-03-24 15:22:53.000|
+|kmontenegro          |work                                                            |gang starr                                                       |2019-01-01 00:12:23.000|
+|AlwinHummels         |geef me je angst                                                |andre hazes                                                      |2019-02-24 11:40:47.000|
+|BlackGauna           |visionz                                                         |wu-tang clan                                                     |2019-01-01 18:36:09.000|
+|RomaKoks             |про красивую жизнь                                              |банд'эрос                                                        |2019-01-01 00:03:08.000|
+|andrew_j_w           |prelude                                                         |foals                                                            |2019-01-01 08:32:36.000|
+|bdule2015            |parado no bailão                                                |mc l da vinte & mc gury                                          |2019-02-20 20:05:02.000|
+|cimualte             |telecaster stripes (capacity version)                           |polkadot stingray                                                |2019-01-02 07:37:25.000|
+|craighoog            |waterwings (and other pool side fashion faux pas)               |alexisonfire                                                     |2019-01-03 19:56:44.000|
+|calexzander          |the reason is?                                                  |hawkwind                                                         |2019-02-27 23:07:31.000|
+|doronbehar           |april in paris                                                  |count basie & his orchestra                                      |2019-01-06 07:16:03.000|
+|flamingspinach       |きみについて                                                          |坂本龍一                                                             |2019-02-21 21:49:29.000|
+|haeckle              |late autumn                                                     |christopher schwarzwalder                                        |2019-01-02 11:22:50.000|
+|hangy                |nicht von dieser welt                                           |swiss und die andern                                             |2019-01-02 10:46:20.000|
+|hellonurse           |all the stars                                                   |kendrick lamar and sza                                           |2019-02-23 20:49:08.000|
+|irnchkn              |161: christmas drinks with dan lloyd                            |lionel birnie, daniel friebe, richard moore                      |2019-01-01 09:09:25.000|
+|jck2                 |golden chords                                                   |deakin                                                           |2019-01-02 15:35:58.000|
+|6d6f7274686f6e       |the leper affinity                                              |opeth                                                            |2019-01-01 10:41:51.000|
+|bojarin3             |marionette                                                      |jeff pearce                                                      |2019-02-27 03:30:42.000|
+|budkin               |rust                                                            |waterweed                                                        |2019-01-01 09:34:55.000|
+|demize               |the end                                                         |my chemical romance                                              |2019-01-01 19:37:30.000|
+|gifflen              |...of your fake dimension                                       |com truise                                                       |2019-02-20 20:36:55.000|
+|jd_                  |lighthouse                                                      |the waifs                                                        |2019-01-02 05:43:56.000|
+|naesk                |running to the sea                                              |chicane                                                          |2019-01-02 16:52:33.000|
+|nitemice             |phoenix wright ~ objection!                                     |noriyuki iwadare                                                 |2019-01-04 08:06:13.000|
+|puigmald             |heroes                                                          |philip glass, american composers orchestra, dennis russell davies|2019-01-14 00:24:11.000|
+|swfloridadude        |bonus tracks: eskimo & icebird mega mix                         |helene rask                                                      |2019-01-01 21:29:29.000|
+|uncoolusername532252 |lesson no. 2                                                    |glenn branca                                                     |2019-02-23 18:04:54.000|
+|unexpected           |bubblin                                                         |anderson .paak                                                   |2019-02-27 04:36:55.000|
+|zergut               |chasing the sun                                                 |the wanted                                                       |2019-01-02 12:19:03.000|
+|Adsky_traktor        |сердце с долгом разлучается                                     |константин беляев                                                |2019-01-01 09:24:44.000|
+|Bezvezenator         |devour                                                          |marilyn manson                                                   |2019-01-01 06:19:22.000|
+|Matt0721             |ok!                                                             |jauz & san holo                                                  |2019-02-20 01:34:19.000|
+|Mexikola             |still clean                                                     |soccer mommy                                                     |2019-02-23 12:55:40.000|
+|Paszt                |poison love                                                     |alison krauss                                                    |2019-01-01 02:38:40.000|
+|SchallundRauch       |you couldn't see this coming                                    |mesh                                                             |2019-04-13 15:09:41.000|
+|Somasis              |white gloves                                                    |khruangbin                                                       |2019-01-14 04:20:59.000|
+|TheBrightLord        |foot fungus                                                     |ski mask the slump god                                           |2019-02-24 18:37:38.000|
+|amit94302            |end game                                                        |taylor swift feat. ed sheeran & future                           |2019-01-01 10:53:58.000|
+|bemeurer             |adult diversion                                                 |alvvays                                                          |2019-01-10 10:49:34.000|
+|gobinathm            |nalam nalam ariya aaval                                         |deva                                                             |2019-02-08 19:24:13.000|
+|hamakedarayanai      |i can't sleep                                                   |samuel                                                           |2019-01-01 01:36:43.000|
+|intrnl               |harmony ribbon                                                  |水瀬いのり                                                            |2019-01-06 15:09:52.000|
+|joshuatly            |哼情歌                                                             |lala hsu                                                         |2019-01-01 05:08:50.000|
+|stupidname           |so you wannabe an outlaw                                        |steve earle                                                      |2019-01-01 14:18:07.000|
+|thesebas             |on the run                                                      |wolf and raven                                                   |2019-01-01 19:12:17.000|
+|Kurogal              |君色に染まる ～アース･スター ドリームver.～                                       |アース･スター ドリーム                                                     |2019-01-01 08:53:24.000|
+|RScholar             |just give me a reason                                           |kurt hugo schneider, sam tsui, kylee                             |2019-01-02 22:30:22.000|
+|WaldemarXXIII        |im ayrogh vshdits                                               |karnig sarkissian                                                |2019-01-01 14:34:18.000|
+|Xythium              |starcrash                                                       |feed me                                                          |2019-03-31 19:58:25.000|
+|Zastai               |fear                                                            |sarah mclachlan                                                  |2019-01-07 08:03:42.000|
+|adamstewiegreen      |42                                                              |mumford & sons                                                   |2019-02-20 11:33:51.000|
+|dwsupport            |no tears left to cry                                            |ariana grande                                                    |2019-01-01 12:33:22.000|
+|elwillow             |beethoven - für elise                                           |rousseau                                                         |2019-02-24 17:34:14.000|
+|gwmaclean            |vindication - zardonic remix                                    |sparzanza, zardonic                                              |2019-02-25 12:41:04.000|
+|iknowzo              |tenere taqhim tossam (feat. tunde adebimpe & kyp malone)        |tinariwen                                                        |2019-02-27 01:13:50.000|
+|malsvent             |umbral [uplifting trance]                                       |maozon                                                           |2019-01-01 07:46:17.000|
+|†AtzzkiySotona†      |meridian                                                        |sirenia                                                          |2019-01-05 11:13:45.000|
+|stormruben           |друг (ч.1)                                                      |океан ельзи                                                      |2019-01-01 21:32:48.000|
+|verfyjd              |the magic number                                                |de la soul                                                       |2019-03-03 11:20:07.000|
+|lostmochiguman       |somewhere a judge                                               |hop along                                                        |2019-01-01 22:03:49.000|
+|lunu                 |sea groove                                                      |big boss man                                                     |2019-02-20 12:30:58.000|
+|nsarakas             |tsunami (original mix)                                          |dvbbs                                                            |2019-02-18 15:17:14.000|
+|phamosus             |who knew                                                        |eminem                                                           |2019-02-20 18:15:02.000|
+|Jaklie               |false confidence                                                |noah kahan                                                       |2019-01-03 23:41:08.000|
+|Silentix             |stratosphere                                                    |duster                                                           |2019-01-01 02:36:06.000|
+|anderson9339         |since i've been loving you                                      |led zeppelin                                                     |2019-01-01 00:08:03.000|
+|bonedriven           |everything zen (the lhasa fever mix)                            |bush                                                             |2019-02-26 11:02:33.000|
+|hds                  |love within beauty                                              |vision éternel                                                   |2019-03-02 06:36:56.000|
+|Julk77               |pretty little fucker                                            |surfbort                                                         |2019-02-17 13:16:51.000|
+|PersonalServices     |bass line                                                       |synus0006                                                        |2019-02-20 22:08:34.000|
+|Shikv                |forecast for today                                              |pelican                                                          |2019-02-22 19:22:40.000|
+|alsk                 |the classical                                                   |the fall                                                         |2019-01-01 00:08:28.000|
+|plaxxx               |automat                                                         |eisbrecher                                                       |2019-02-18 06:51:57.000|
+|smreker              |feeling california                                              |winnetka bowling league                                          |2019-04-13 07:55:25.000|
+|themono              |white christmas                                                 |darlene love                                                     |2019-01-04 09:01:17.000|
+|c1ph4                |10 kugutsuuta kagirohi ha yomi ni mata muto                     |kenji kawai                                                      |2019-01-03 19:11:22.000|
+|chacawaca            |retour à l'institut                                             |les trois accords                                                |2019-02-17 15:08:04.000|
+|chime95              |act ii: scene seven: i. the dance of eternity                   |dream theater                                                    |2019-02-17 09:05:36.000|
+|Tinymeat             |a deep sea meditation experience                                |sync24                                                           |2019-01-01 13:58:56.000|
+|[kol]                |my syrup                                                        |sheen x sweyn j                                                  |2019-01-01 00:57:31.000|
+|aka_caim             |joy of a toy continued                                          |kevin ayers                                                      |2019-01-02 16:55:51.000|
+|boozerok             |bad boy for life                                                |шон комбс                                                        |2019-04-12 14:29:51.000|
+|drpfenderson         |the court of the crimson king                                   |king crimson                                                     |2019-01-01 06:48:13.000|
+|gvroon               |going down (live recording -- ann arbor blues and jazz festival)|freddie king                                                     |2019-02-26 14:01:08.000|
+|j-ha                 |par avion                                                       |fm belfast                                                       |2019-02-27 09:02:58.000|
+|papabean             |renegades                                                       |x ambassadors                                                    |2019-01-01 02:12:51.000|
+|roman_rem            |deep space                                                      |paul oakenfold                                                   |2019-02-26 10:54:33.000|
+|slideyfoot           |are you that kind of girl?                                      |white town                                                       |2019-01-01 22:43:49.000|
+|ukko12               |move on up - single version                                     |curtis mayfield                                                  |2019-01-01 10:04:02.000|
+|linkmath             |taki taki (part. selena gomez, ozuna e cardi b)                 |dj snake                                                         |2019-01-16 22:28:10.000|
+|maeve1916            |freedom                                                         |wham!                                                            |2019-01-01 19:30:38.000|
+|meashishsaini        |bambi                                                           |jidenna                                                          |2019-01-04 12:05:16.000|
+|satanshunger         |cartão de visita                                                |criolo                                                           |2019-01-01 16:38:56.000|
+|zebedeemcdougal      |roygbiv                                                         |boards of canada                                                 |2019-01-02 12:37:20.000|
+|jelera               |gin and juice (feat. dat nigga daz)                             |snoop dogg                                                       |2019-01-01 23:00:07.000|
+|jin_tsu              |maria da vila matilde                                           |elza soares                                                      |2019-01-01 19:58:59.000|
+|tehpoison            |в холодном просторе                                             |радость                                                          |2019-02-18 04:45:35.000|
+|thing-fish           |lou-jean                                                        |damien jurado                                                    |2019-01-02 17:50:48.000|
+|xokoyotzin           |first time                                                      |carly rae jepsen                                                 |2019-01-01 00:50:56.000|
+|xvicarious           |beer bucket list                                                |david adam byrnes                                                |2019-01-01 01:06:13.000|
+|gondoi               |sunflower (spider-man: into the spider-verse)                   |post malone                                                      |2019-01-09 16:31:04.000|
+|isuguitar12          |traveling on                                                    |the decemberists                                                 |2019-01-02 17:10:34.000|
+|kemuel               |diamonds                                                        |hawk nelson                                                      |2019-03-19 13:13:51.000|
+|psyflac              |de usuahia a la quiaca                                          |gustavo santaolalla                                              |2019-01-01 14:34:35.000|
+|soubrunoalmeida      |end game                                                        |taylor swift                                                     |2019-01-01 14:21:13.000|
+|Cl�psHydra           |hym                                                             |isis                                                             |2019-01-01 13:09:35.000|
+|Cooked_Bread         |all these things i hate (revolve around me)                     |bullet for my valentine                                          |2019-02-14 03:07:36.000|
+|anoubis              |nightflyers main title                                          |уильям бейтс                                                     |2019-01-03 12:53:52.000|
+|davenportm           |wild horses - acoustic                                          |bishop briggs                                                    |2019-01-01 01:48:32.000|
+|jaycedk              |death or glory                                                  |iron maiden                                                      |2019-02-28 08:12:43.000|
+|kingkool68           |worst nightmare                                                 |the demigodz                                                     |2019-01-01 02:22:38.000|
+|longas               |фильм 2018                                                      |проводник трейлер                                                |2019-01-02 10:22:41.000|
+|lunt                 |intro                                                           |data rebel                                                       |2019-01-02 08:26:48.000|
+|untotooku            |nine nocturnes: nocturne three                                  |jandek                                                           |2019-03-19 23:44:08.000|
+|vitalikdobriy        |я из станицы                                                    |нагора                                                           |2019-02-21 09:14:08.000|
+|welldread            |arizona                                                         |mark lindsay                                                     |2019-01-31 09:28:59.000|
+|no31531              |make it up to you                                               |julia michaels                                                   |2019-01-01 12:31:00.000|
+|rmarais              |closed minds                                                    |polaris                                                          |2019-02-19 18:18:26.000|
+|rmcknt               |mama                                                            |spice girls                                                      |2019-01-03 14:14:52.000|
+|shaneknysh           |waking gods - part 4                                            |sylvain neuvel                                                   |2019-01-01 08:02:33.000|
+|supadood             |down to earth (sean glass remix)                                |flight facilities                                                |2019-02-26 19:55:11.000|
+|toastal              |breakerfall                                                     |pearl jam                                                        |2019-01-01 09:27:23.000|
+|toby3d               |for the damaged coda                                            |blonde redhead                                                   |2019-01-17 04:58:26.000|
+|tozapid              |три дороги                                                      |алиса                                                            |2019-02-18 15:23:13.000|
+|AllSparks            |fever                                                           |balthazar                                                        |2019-01-02 08:48:19.000|
+|Canis_L_Sapien       |wolves                                                          |marshmello & selena gomez                                        |2019-01-03 08:39:29.000|
+|DJ.Xcite             |top 20                                                          |best female metal and hard rock singers                          |2019-01-02 00:27:26.000|
+|Luis2oh9             |experience the challenge                                        |psilocybe project                                                |2019-04-13 09:40:25.000|
+|NichoBI              |by everyone                                                     |adem                                                             |2019-01-01 15:12:39.000|
+|PPV                  |новый баланс                                                    |thomas mraz                                                      |2019-01-09 06:36:02.000|
+|TyberZ52             |bandito                                                         |twenty one pilots                                                |2019-01-01 05:29:05.000|
+|DivineNightmare      |birdie                                                          |avril lavigne                                                    |2019-02-24 20:32:53.000|
+|augustohp            |thrasher                                                        |dance with the dead                                              |2019-01-02 00:38:16.000|
+|deromemont           |hold up                                                         |al'tarba                                                         |2019-02-27 09:43:53.000|
+|fourk                |infinity                                                        |w o l f c l u b                                                  |2019-01-02 08:57:24.000|
+|lemarac              |electronic performers                                           |air                                                              |2019-01-07 13:23:46.000|
+|pyromaniac           |american pie, part one                                          |don mclean                                                       |2019-01-01 01:33:48.000|
+|dertasiu             |never gonna make (factory dance team mix)                       |morgana                                                          |2019-01-01 00:04:37.000|
+|kori                 |a fool moon night                                               |the koxx                                                         |2019-01-02 15:53:43.000|
+|lcnaud               |sunday bloody sunday - remastered 2008                          |u2                                                               |2019-01-01 14:17:23.000|
+|martik               |this lullaby                                                    |queens of the stone age                                          |2019-01-10 09:05:59.000|
+|whatisbetter         |need you now                                                    |cut copy                                                         |2019-01-01 08:13:39.000|
+|Dreamkeeper          |jenkins: cú chullain                                            |karl jenkins                                                     |2019-01-09 14:23:48.000|
+|beefkidney           |pop/stars (feat. jaira burns & league of legends)               |k/da                                                             |2019-01-02 12:20:39.000|
+|paxactor             |doom and gloom                                                  |the rolling stones                                               |2019-02-21 00:27:23.000|
+|pbm367               |not a damn thing changed                                        |lukas graham                                                     |2019-01-07 15:31:21.000|
+|rweb                 |disco yes                                                       |tom misch, poppy ajudha                                          |2019-01-01 00:03:08.000|
+|Arcor                |exsultate justi                                                 |john williams                                                    |2019-01-01 01:22:23.000|
+|BiamBioum            |beirut (14.12.16 - live in paris)                               |ibrahim maalouf                                                  |2019-01-07 13:56:07.000|
+|Leonivek             |crystallized                                                    |young the giant                                                  |2019-01-01 00:02:42.000|
+|PeterK52             |heart                                                           |uz                                                               |2019-01-01 00:44:38.000|
+|WilhelmStroker       |trotting hamutaro                                               |3rd prize - cigarettes and stuff                                 |2019-01-02 12:20:16.000|
+|Wolfynight           |brainless                                                       |eminem                                                           |2019-01-01 01:39:41.000|
+|YOGURTBASTARD        |duchess                                                         |genesis                                                          |2019-01-01 02:27:17.000|
+|Grawl                |lavender (nightfall remix)                                      |snoop dogg                                                       |2019-01-01 03:56:29.000|
+|LordCatzorz          |learn to fly                                                    |foo fighters                                                     |2019-01-03 12:24:17.000|
+|Reisen Udongein Inaba|砂のこども                                                           |水瀬ましろ                                                            |2019-01-01 17:07:00.000|
+|Silent Singer        |mr. tillman                                                     |father john misty                                                |2019-01-01 03:08:22.000|
+|Dazzel               |the departure                                                   |michael nyman                                                    |2019-01-03 10:26:56.000|
+|Groschi              |chuff                                                           |waste man                                                        |2019-01-25 16:19:37.000|
+|Shunpike             |kodac moment                                                    |moonlit sailor                                                   |2019-01-04 15:48:04.000|
+|BornabeWylde         |wow.                                                            |post malone                                                      |2019-04-14 14:01:05.000|
+|CraxorAdam           |prophecy                                                        |terry devine-king                                                |2019-02-25 17:33:36.000|
+|JVTV                 |dreams                                                          |gabrielle                                                        |2019-02-26 15:37:10.000|
+|JuicyP               |限界突破 g-beat (ignited arrangement)                               |立花響(cv:悠木碧)                                                      |2019-02-17 18:39:33.000|
+|Starjames77          |see the sun (feat. sir j)                                       |robkta                                                           |2019-02-18 03:07:34.000|
+|calvariometal        |monday.com                                                      |¿qué se siente utilizar monday.com?                              |2019-02-21 06:30:09.000|
+|dgdr.au              |from hank to hendrix                                            |neil young                                                       |2019-03-14 10:16:23.000|
+|drakesteele          |3 libras                                                        |a perfect circle                                                 |2019-02-18 19:49:57.000|
+|johnatanmoran        |not equal (sklt slktr prod.)                                    |s curro                                                          |2019-03-10 16:28:29.000|
+|kirijin              |slow rise                                                       |jazzanova                                                        |2019-02-04 08:17:12.000|
+|minkolazer           |empty stocking blues                                            |floyd dixon                                                      |2019-01-01 10:53:01.000|
+|nicholasbird         |are 'friends' electric?                                         |tubeway army                                                     |2019-02-17 20:12:47.000|
+|phdnk                |spectre                                                         |alan walker                                                      |2019-01-02 12:17:59.000|
+|Bound2Fate           |home invasion                                                   |steven wilson                                                    |2019-01-01 00:07:01.000|
+|N1CK3Y               |shitstorm                                                       |strapping young lad                                              |2019-01-01 00:00:48.000|
+|SadGen               |anathema                                                        |twenty one pilots                                                |2019-02-24 23:56:21.000|
+|lee_cz               |emperor's new clothes                                           |panic! at the disco                                              |2019-01-01 12:02:11.000|
+|Devvy                |stop torturing me                                               |wicca phase springs eternal                                      |2019-02-21 00:23:38.000|
+|IICUX                |no one knows                                                    |queens of the stone age                                          |2019-01-09 14:31:47.000|
+|InvincibleAsia       |love hurts                                                      |boa                                                              |2019-01-01 09:49:09.000|
+|AscendedGravity      |amoeba                                                          |adolescents                                                      |2019-01-01 23:01:17.000|
+|Boris_Neo            |keep you close                                                  |deus                                                             |2019-01-22 16:48:27.000|
+|Kluuz                |talktalk                                                        |a perfect circle                                                 |2019-02-17 03:04:24.000|
+|Roy Page Join Damage |#killstream: new year's eve + the top ten moments of 2018       |theralphretort                                                   |2019-01-01 04:01:16.000|
+|TRFFT                |dj cam & dj cam quartet - new york new york_1545697986434.mp3   |unknown artist                                                    |2019-03-07 21:10:08.000|
+|shogazefan           |pange linqua gloriosi, buxwv 91                                 |paul hillier, dieterich buxtehude, theatre of voices, paul hillier|2019-02-25 18:27:21.000|
+|thewabbit1           |happy song                                                      |bring me the horizon                                              |2019-02-18 20:28:54.000|
+
+-- 4. Top 3 Days with Most Listens per User
+
+|user_id              |num_listens|listen_date            |
+|---------------------|-----------|-----------------------|
+|6d6f7274686f6e       |204        |2019-01-27 00:00:00.000|
+|6d6f7274686f6e       |198        |2019-01-14 00:00:00.000|
+|6d6f7274686f6e       |196        |2019-03-15 00:00:00.000|
+|Adsky_traktor        |109        |2019-01-03 00:00:00.000|
+|Adsky_traktor        |99         |2019-01-05 00:00:00.000|
+|Adsky_traktor        |86         |2019-01-04 00:00:00.000|
+|AllSparks            |114        |2019-01-31 00:00:00.000|
+|AllSparks            |81         |2019-01-23 00:00:00.000|
+|AllSparks            |72         |2019-01-11 00:00:00.000|
+|AlwinHummels         |1          |2019-02-24 00:00:00.000|
+|Arcor                |133        |2019-03-02 00:00:00.000|
+|Arcor                |111        |2019-03-01 00:00:00.000|
+|Arcor                |86         |2019-03-16 00:00:00.000|
+|AscendedGravity      |77         |2019-02-26 00:00:00.000|
+|AscendedGravity      |61         |2019-04-09 00:00:00.000|
+|AscendedGravity      |55         |2019-04-05 00:00:00.000|
+|Bezvezenator         |92         |2019-01-16 00:00:00.000|
+|Bezvezenator         |89         |2019-01-20 00:00:00.000|
+|Bezvezenator         |75         |2019-01-17 00:00:00.000|
+|BiamBioum            |34         |2019-04-12 00:00:00.000|
+|BiamBioum            |28         |2019-03-14 00:00:00.000|
+|BiamBioum            |27         |2019-02-12 00:00:00.000|
+|BlackGauna           |50         |2019-01-24 00:00:00.000|
+|BlackGauna           |29         |2019-01-19 00:00:00.000|
+|BlackGauna           |26         |2019-01-18 00:00:00.000|
+|Boris_Neo            |57         |2019-01-23 00:00:00.000|
+|Boris_Neo            |38         |2019-01-24 00:00:00.000|
+|Boris_Neo            |27         |2019-01-25 00:00:00.000|
+|BornabeWylde         |2          |2019-04-14 00:00:00.000|
+|Bound2Fate           |118        |2019-01-19 00:00:00.000|
+|Bound2Fate           |110        |2019-01-02 00:00:00.000|
+|Bound2Fate           |105        |2019-01-03 00:00:00.000|
+|Canis_L_Sapien       |50         |2019-01-07 00:00:00.000|
+|Canis_L_Sapien       |35         |2019-03-25 00:00:00.000|
+|Canis_L_Sapien       |32         |2019-01-08 00:00:00.000|
+|Cl�psHydra           |218        |2019-01-22 00:00:00.000|
+|Cl�psHydra           |217        |2019-02-07 00:00:00.000|
+|Cl�psHydra           |215        |2019-02-06 00:00:00.000|
+|Cooked_Bread         |107        |2019-02-15 00:00:00.000|
+|Cooked_Bread         |71         |2019-02-18 00:00:00.000|
+|Cooked_Bread         |56         |2019-02-14 00:00:00.000|
+|CraxorAdam           |20         |2019-03-29 00:00:00.000|
+|CraxorAdam           |17         |2019-03-22 00:00:00.000|
+|CraxorAdam           |15         |2019-03-23 00:00:00.000|
+|DJ.Xcite             |17         |2019-01-04 00:00:00.000|
+|DJ.Xcite             |17         |2019-01-26 00:00:00.000|
+|DJ.Xcite             |13         |2019-03-23 00:00:00.000|
+|Dazzel               |64         |2019-04-02 00:00:00.000|
+|Dazzel               |61         |2019-01-11 00:00:00.000|
+|Dazzel               |56         |2019-01-23 00:00:00.000|
+|Devvy                |302        |2019-02-21 00:00:00.000|
+|Devvy                |68         |2019-02-26 00:00:00.000|
+|Devvy                |64         |2019-03-01 00:00:00.000|
+|DivineNightmare      |2          |2019-02-25 00:00:00.000|
+|DivineNightmare      |1          |2019-02-24 00:00:00.000|
+|Dreamkeeper          |53         |2019-02-26 00:00:00.000|
+|Dreamkeeper          |42         |2019-03-14 00:00:00.000|
+|Dreamkeeper          |30         |2019-03-19 00:00:00.000|
+|Grawl                |149        |2019-04-01 00:00:00.000|
+|Grawl                |144        |2019-04-07 00:00:00.000|
+|Grawl                |137        |2019-04-02 00:00:00.000|
+|Groschi              |540        |2019-02-05 00:00:00.000|
+|Groschi              |535        |2019-02-16 00:00:00.000|
+|Groschi              |532        |2019-02-03 00:00:00.000|
+|IICUX                |70         |2019-03-14 00:00:00.000|
+|IICUX                |35         |2019-02-11 00:00:00.000|
+|IICUX                |35         |2019-03-27 00:00:00.000|
+|InvincibleAsia       |248        |2019-02-18 00:00:00.000|
+|InvincibleAsia       |240        |2019-02-01 00:00:00.000|
+|InvincibleAsia       |199        |2019-02-05 00:00:00.000|
+|JVTV                 |31         |2019-04-12 00:00:00.000|
+|JVTV                 |27         |2019-03-13 00:00:00.000|
+|JVTV                 |25         |2019-03-06 00:00:00.000|
+|Jaklie               |68         |2019-04-10 00:00:00.000|
+|Jaklie               |47         |2019-02-09 00:00:00.000|
+|Jaklie               |38         |2019-04-01 00:00:00.000|
+|JuicyP               |76         |2019-02-19 00:00:00.000|
+|JuicyP               |33         |2019-02-18 00:00:00.000|
+|JuicyP               |4          |2019-02-17 00:00:00.000|
+|Julk77               |96         |2019-04-13 00:00:00.000|
+|Julk77               |88         |2019-04-14 00:00:00.000|
+|Julk77               |41         |2019-03-17 00:00:00.000|
+|Kluuz                |32         |2019-02-21 00:00:00.000|
+|Kluuz                |25         |2019-02-17 00:00:00.000|
+|Kluuz                |19         |2019-02-18 00:00:00.000|
+|Kurogal              |68         |2019-03-05 00:00:00.000|
+|Kurogal              |36         |2019-03-23 00:00:00.000|
+|Kurogal              |31         |2019-02-01 00:00:00.000|
+|Leonivek             |25         |2019-03-14 00:00:00.000|
+|Leonivek             |18         |2019-02-08 00:00:00.000|
+|Leonivek             |17         |2019-01-09 00:00:00.000|
+|LordCatzorz          |23         |2019-02-07 00:00:00.000|
+|LordCatzorz          |22         |2019-02-24 00:00:00.000|
+|LordCatzorz          |20         |2019-04-14 00:00:00.000|
+|Luis2oh9             |130        |2019-04-14 00:00:00.000|
+|Luis2oh9             |70         |2019-04-13 00:00:00.000|
+|Matt0721             |27         |2019-03-05 00:00:00.000|
+|Matt0721             |24         |2019-02-27 00:00:00.000|
+|Matt0721             |22         |2019-03-13 00:00:00.000|
+|Mexikola             |99         |2019-04-06 00:00:00.000|
+|Mexikola             |46         |2019-03-07 00:00:00.000|
+|Mexikola             |45         |2019-03-06 00:00:00.000|
+|N1CK3Y               |186        |2019-02-16 00:00:00.000|
+|N1CK3Y               |140        |2019-01-06 00:00:00.000|
+|N1CK3Y               |140        |2019-02-02 00:00:00.000|
+|NichoBI              |95         |2019-01-29 00:00:00.000|
+|NichoBI              |88         |2019-04-07 00:00:00.000|
+|NichoBI              |83         |2019-03-03 00:00:00.000|
+|PPV                  |171        |2019-02-15 00:00:00.000|
+|PPV                  |164        |2019-01-14 00:00:00.000|
+|PPV                  |105        |2019-01-16 00:00:00.000|
+|Paszt                |72         |2019-01-25 00:00:00.000|
+|Paszt                |64         |2019-02-21 00:00:00.000|
+|Paszt                |48         |2019-02-02 00:00:00.000|
+|PersonalServices     |239        |2019-03-17 00:00:00.000|
+|PersonalServices     |141        |2019-02-21 00:00:00.000|
+|PersonalServices     |73         |2019-04-14 00:00:00.000|
+|PeterK52             |180        |2019-02-16 00:00:00.000|
+|PeterK52             |178        |2019-01-03 00:00:00.000|
+|PeterK52             |165        |2019-01-18 00:00:00.000|
+|RScholar             |167        |2019-03-22 00:00:00.000|
+|RScholar             |129        |2019-03-27 00:00:00.000|
+|RScholar             |103        |2019-02-27 00:00:00.000|
+|Reisen Udongein Inaba|148        |2019-02-16 00:00:00.000|
+|Reisen Udongein Inaba|102        |2019-02-03 00:00:00.000|
+|Reisen Udongein Inaba|97         |2019-01-06 00:00:00.000|
+|RomaKoks             |178        |2019-01-03 00:00:00.000|
+|RomaKoks             |164        |2019-01-12 00:00:00.000|
+|RomaKoks             |150        |2019-01-13 00:00:00.000|
+|Roy Page Join Damage |39         |2019-02-24 00:00:00.000|
+|Roy Page Join Damage |38         |2019-03-03 00:00:00.000|
+|Roy Page Join Damage |30         |2019-03-05 00:00:00.000|
+|SadGen               |158        |2019-03-01 00:00:00.000|
+|SadGen               |58         |2019-04-12 00:00:00.000|
+|SadGen               |57         |2019-02-25 00:00:00.000|
+|SchallundRauch       |12         |2019-04-14 00:00:00.000|
+|SchallundRauch       |1          |2019-04-13 00:00:00.000|
+|Shikv                |55         |2019-02-26 00:00:00.000|
+|Shikv                |43         |2019-02-22 00:00:00.000|
+|Shikv                |38         |2019-02-23 00:00:00.000|
+|Shunpike             |156        |2019-02-06 00:00:00.000|
+|Shunpike             |121        |2019-04-06 00:00:00.000|
+|Shunpike             |117        |2019-02-16 00:00:00.000|
+|Silent Singer        |223        |2019-03-15 00:00:00.000|
+|Silent Singer        |199        |2019-04-03 00:00:00.000|
+|Silent Singer        |196        |2019-02-25 00:00:00.000|
+|Silentix             |118        |2019-04-12 00:00:00.000|
+|Silentix             |98         |2019-02-16 00:00:00.000|
+|Silentix             |97         |2019-01-31 00:00:00.000|
+|Somasis              |107        |2019-02-10 00:00:00.000|
+|Somasis              |68         |2019-04-14 00:00:00.000|
+|Somasis              |61         |2019-03-25 00:00:00.000|
+|Starjames77          |87         |2019-03-28 00:00:00.000|
+|Starjames77          |67         |2019-03-26 00:00:00.000|
+|Starjames77          |56         |2019-03-30 00:00:00.000|
+|TRFFT                |104        |2019-03-10 00:00:00.000|
+|TRFFT                |25         |2019-03-24 00:00:00.000|
+|TRFFT                |8          |2019-03-27 00:00:00.000|
+|TheBrightLord        |92         |2019-02-26 00:00:00.000|
+|TheBrightLord        |76         |2019-03-22 00:00:00.000|
+|TheBrightLord        |47         |2019-03-28 00:00:00.000|
+|Tinymeat             |76         |2019-01-02 00:00:00.000|
+|Tinymeat             |60         |2019-01-26 00:00:00.000|
+|Tinymeat             |52         |2019-04-10 00:00:00.000|
+|TyberZ52             |114        |2019-02-11 00:00:00.000|
+|TyberZ52             |109        |2019-01-24 00:00:00.000|
+|TyberZ52             |99         |2019-02-13 00:00:00.000|
+|WaldemarXXIII        |56         |2019-02-15 00:00:00.000|
+|WaldemarXXIII        |46         |2019-03-14 00:00:00.000|
+|WaldemarXXIII        |38         |2019-01-21 00:00:00.000|
+|WilhelmStroker       |107        |2019-01-18 00:00:00.000|
+|WilhelmStroker       |104        |2019-02-11 00:00:00.000|
+|WilhelmStroker       |83         |2019-01-15 00:00:00.000|
+|Wolfynight           |111        |2019-01-18 00:00:00.000|
+|Wolfynight           |61         |2019-01-17 00:00:00.000|
+|Wolfynight           |51         |2019-01-16 00:00:00.000|
+|Xythium              |6          |2019-03-31 00:00:00.000|
+|YOGURTBASTARD        |75         |2019-01-16 00:00:00.000|
+|YOGURTBASTARD        |58         |2019-01-22 00:00:00.000|
+|YOGURTBASTARD        |49         |2019-02-15 00:00:00.000|
+|Zastai               |118        |2019-02-12 00:00:00.000|
+|Zastai               |109        |2019-03-07 00:00:00.000|
+|Zastai               |108        |2019-02-15 00:00:00.000|
+|[kol]                |35         |2019-01-11 00:00:00.000|
+|[kol]                |34         |2019-01-15 00:00:00.000|
+|[kol]                |33         |2019-01-04 00:00:00.000|
+|adamstewiegreen      |60         |2019-03-17 00:00:00.000|
+|adamstewiegreen      |24         |2019-04-05 00:00:00.000|
+|adamstewiegreen      |19         |2019-03-13 00:00:00.000|
+|aka_caim             |219        |2019-01-19 00:00:00.000|
+|aka_caim             |178        |2019-01-09 00:00:00.000|
+|aka_caim             |144        |2019-01-08 00:00:00.000|
+|alsk                 |148        |2019-01-17 00:00:00.000|
+|alsk                 |122        |2019-01-12 00:00:00.000|
+|alsk                 |122        |2019-01-13 00:00:00.000|
+|amit94302            |114        |2019-01-12 00:00:00.000|
+|amit94302            |69         |2019-01-01 00:00:00.000|
+|amit94302            |64         |2019-02-16 00:00:00.000|
+|anderson9339         |127        |2019-03-11 00:00:00.000|
+|anderson9339         |121        |2019-01-29 00:00:00.000|
+|anderson9339         |106        |2019-03-29 00:00:00.000|
+|andrew_j_w           |110        |2019-01-26 00:00:00.000|
+|andrew_j_w           |108        |2019-02-09 00:00:00.000|
+|andrew_j_w           |107        |2019-03-02 00:00:00.000|
+|anoubis              |68         |2019-02-24 00:00:00.000|
+|anoubis              |65         |2019-01-03 00:00:00.000|
+|anoubis              |59         |2019-02-17 00:00:00.000|
+|arcadian99           |13         |2019-02-22 00:00:00.000|
+|arcadian99           |4          |2019-02-21 00:00:00.000|
+|augustohp            |22         |2019-01-04 00:00:00.000|
+|augustohp            |7          |2019-01-03 00:00:00.000|
+|augustohp            |5          |2019-01-13 00:00:00.000|
+|bdule2015            |22         |2019-02-27 00:00:00.000|
+|bdule2015            |17         |2019-03-06 00:00:00.000|
+|bdule2015            |16         |2019-03-04 00:00:00.000|
+|beefkidney           |56         |2019-01-22 00:00:00.000|
+|beefkidney           |53         |2019-03-05 00:00:00.000|
+|beefkidney           |52         |2019-02-19 00:00:00.000|
+|bemeurer             |66         |2019-03-27 00:00:00.000|
+|bemeurer             |64         |2019-02-15 00:00:00.000|
+|bemeurer             |58         |2019-01-16 00:00:00.000|
+|bojarin3             |46         |2019-02-27 00:00:00.000|
+|bojarin3             |31         |2019-03-03 00:00:00.000|
+|bojarin3             |27         |2019-04-04 00:00:00.000|
+|bonedriven           |119        |2019-03-21 00:00:00.000|
+|bonedriven           |74         |2019-03-26 00:00:00.000|
+|bonedriven           |70         |2019-04-14 00:00:00.000|
+|boozerok             |19         |2019-04-12 00:00:00.000|
+|boozerok             |5          |2019-04-13 00:00:00.000|
+|budkin               |141        |2019-03-04 00:00:00.000|
+|budkin               |129        |2019-03-07 00:00:00.000|
+|budkin               |126        |2019-04-02 00:00:00.000|
+|c1ph4                |66         |2019-02-18 00:00:00.000|
+|c1ph4                |64         |2019-01-30 00:00:00.000|
+|c1ph4                |58         |2019-01-15 00:00:00.000|
+|calexzander          |4          |2019-02-27 00:00:00.000|
+|calvariometal        |20         |2019-02-26 00:00:00.000|
+|calvariometal        |6          |2019-02-24 00:00:00.000|
+|calvariometal        |2          |2019-02-25 00:00:00.000|
+|chacawaca            |163        |2019-03-14 00:00:00.000|
+|chacawaca            |113        |2019-03-18 00:00:00.000|
+|chacawaca            |113        |2019-04-01 00:00:00.000|
+|chime95              |141        |2019-03-11 00:00:00.000|
+|chime95              |128        |2019-03-07 00:00:00.000|
+|chime95              |102        |2019-02-25 00:00:00.000|
+|cimualte             |230        |2019-03-08 00:00:00.000|
+|cimualte             |190        |2019-03-11 00:00:00.000|
+|cimualte             |190        |2019-04-06 00:00:00.000|
+|cirfis               |46         |2019-01-13 00:00:00.000|
+|cirfis               |22         |2019-03-12 00:00:00.000|
+|cirfis               |10         |2019-02-27 00:00:00.000|
+|clinford86           |173        |2019-02-07 00:00:00.000|
+|clinford86           |154        |2019-01-31 00:00:00.000|
+|clinford86           |89         |2019-01-21 00:00:00.000|
+|craighoog            |89         |2019-03-15 00:00:00.000|
+|craighoog            |80         |2019-03-27 00:00:00.000|
+|craighoog            |75         |2019-03-28 00:00:00.000|
+|davenportm           |97         |2019-02-19 00:00:00.000|
+|davenportm           |95         |2019-02-13 00:00:00.000|
+|davenportm           |90         |2019-01-11 00:00:00.000|
+|demize               |51         |2019-03-13 00:00:00.000|
+|demize               |42         |2019-03-08 00:00:00.000|
+|demize               |41         |2019-03-11 00:00:00.000|
+|deromemont           |81         |2019-04-02 00:00:00.000|
+|deromemont           |61         |2019-03-27 00:00:00.000|
+|deromemont           |56         |2019-03-19 00:00:00.000|
+|dertasiu             |86         |2019-02-09 00:00:00.000|
+|dertasiu             |66         |2019-02-11 00:00:00.000|
+|dertasiu             |63         |2019-01-01 00:00:00.000|
+|dgdr.au              |155        |2019-03-28 00:00:00.000|
+|dgdr.au              |142        |2019-04-01 00:00:00.000|
+|dgdr.au              |115        |2019-03-25 00:00:00.000|
+|doronbehar           |19         |2019-02-20 00:00:00.000|
+|doronbehar           |16         |2019-01-16 00:00:00.000|
+|doronbehar           |9          |2019-01-19 00:00:00.000|
+|drakesteele          |18         |2019-02-21 00:00:00.000|
+|drakesteele          |14         |2019-02-18 00:00:00.000|
+|drakesteele          |4          |2019-02-19 00:00:00.000|
+|drpfenderson         |164        |2019-03-13 00:00:00.000|
+|drpfenderson         |146        |2019-02-05 00:00:00.000|
+|drpfenderson         |138        |2019-01-28 00:00:00.000|
+|dwsupport            |56         |2019-02-16 00:00:00.000|
+|dwsupport            |41         |2019-04-08 00:00:00.000|
+|dwsupport            |36         |2019-04-09 00:00:00.000|
+|elwillow             |71         |2019-04-03 00:00:00.000|
+|elwillow             |57         |2019-02-24 00:00:00.000|
+|elwillow             |23         |2019-03-15 00:00:00.000|
+|flamingspinach       |131        |2019-04-12 00:00:00.000|
+|flamingspinach       |39         |2019-04-03 00:00:00.000|
+|flamingspinach       |35         |2019-02-22 00:00:00.000|
+|fourk                |32         |2019-02-02 00:00:00.000|
+|fourk                |32         |2019-04-04 00:00:00.000|
+|fourk                |26         |2019-03-29 00:00:00.000|
+|gifflen              |11         |2019-02-20 00:00:00.000|
+|gobinathm            |59         |2019-02-14 00:00:00.000|
+|gobinathm            |35         |2019-02-08 00:00:00.000|
+|gobinathm            |26         |2019-02-27 00:00:00.000|
+|gondoi               |245        |2019-01-15 00:00:00.000|
+|gondoi               |47         |2019-01-14 00:00:00.000|
+|gondoi               |46         |2019-02-08 00:00:00.000|
+|gvroon               |6          |2019-02-26 00:00:00.000|
+|gwmaclean            |24         |2019-03-27 00:00:00.000|
+|gwmaclean            |22         |2019-03-24 00:00:00.000|
+|gwmaclean            |17         |2019-03-29 00:00:00.000|
+|haeckle              |68         |2019-03-01 00:00:00.000|
+|haeckle              |58         |2019-01-10 00:00:00.000|
+|haeckle              |42         |2019-03-13 00:00:00.000|
+|hamakedarayanai      |2          |2019-01-01 00:00:00.000|
+|hamakedarayanai      |1          |2019-01-07 00:00:00.000|
+|hangy                |101        |2019-01-02 00:00:00.000|
+|hangy                |93         |2019-01-17 00:00:00.000|
+|hangy                |79         |2019-01-14 00:00:00.000|
+|hds                  |1,279      |2019-04-01 00:00:00.000|
+|hds                  |1,266      |2019-03-09 00:00:00.000|
+|hds                  |1,265      |2019-03-04 00:00:00.000|
+|hellonurse           |1          |2019-02-23 00:00:00.000|
+|hellonurse           |1          |2019-02-28 00:00:00.000|
+|hellonurse           |1          |2019-03-20 00:00:00.000|
+|iknowzo              |13         |2019-03-17 00:00:00.000|
+|iknowzo              |7          |2019-03-23 00:00:00.000|
+|iknowzo              |5          |2019-03-04 00:00:00.000|
+|inhji                |236        |2019-03-09 00:00:00.000|
+|inhji                |185        |2019-02-05 00:00:00.000|
+|inhji                |175        |2019-03-14 00:00:00.000|
+|intrnl               |38         |2019-03-07 00:00:00.000|
+|intrnl               |30         |2019-01-06 00:00:00.000|
+|intrnl               |29         |2019-02-03 00:00:00.000|
+|irnchkn              |60         |2019-01-06 00:00:00.000|
+|irnchkn              |46         |2019-02-13 00:00:00.000|
+|irnchkn              |38         |2019-01-13 00:00:00.000|
+|isuguitar12          |87         |2019-03-06 00:00:00.000|
+|isuguitar12          |42         |2019-01-11 00:00:00.000|
+|isuguitar12          |42         |2019-02-04 00:00:00.000|
+|j-ha                 |50         |2019-03-02 00:00:00.000|
+|j-ha                 |50         |2019-04-03 00:00:00.000|
+|j-ha                 |40         |2019-04-08 00:00:00.000|
+|jaycedk              |104        |2019-02-28 00:00:00.000|
+|jaycedk              |28         |2019-03-29 00:00:00.000|
+|jck2                 |119        |2019-01-08 00:00:00.000|
+|jck2                 |116        |2019-01-15 00:00:00.000|
+|jck2                 |90         |2019-01-10 00:00:00.000|
+|jd_                  |91         |2019-02-09 00:00:00.000|
+|jd_                  |90         |2019-01-08 00:00:00.000|
+|jd_                  |71         |2019-02-06 00:00:00.000|
+|jelera               |62         |2019-02-05 00:00:00.000|
+|jelera               |58         |2019-01-02 00:00:00.000|
+|jelera               |48         |2019-01-27 00:00:00.000|
+|jin_tsu              |48         |2019-01-12 00:00:00.000|
+|jin_tsu              |43         |2019-03-16 00:00:00.000|
+|jin_tsu              |39         |2019-02-09 00:00:00.000|
+|johnatanmoran        |110        |2019-03-22 00:00:00.000|
+|johnatanmoran        |57         |2019-03-10 00:00:00.000|
+|johnatanmoran        |22         |2019-04-02 00:00:00.000|
+|joshuatly            |88         |2019-02-01 00:00:00.000|
+|joshuatly            |86         |2019-01-09 00:00:00.000|
+|joshuatly            |81         |2019-01-11 00:00:00.000|
+|kemuel               |44         |2019-03-19 00:00:00.000|
+|kemuel               |20         |2019-03-25 00:00:00.000|
+|kemuel               |19         |2019-03-31 00:00:00.000|
+|kingjan1999          |39         |2019-04-14 00:00:00.000|
+|kingjan1999          |35         |2019-04-05 00:00:00.000|
+|kingjan1999          |14         |2019-03-24 00:00:00.000|
+|kingkool68           |198        |2019-01-18 00:00:00.000|
+|kingkool68           |127        |2019-01-28 00:00:00.000|
+|kingkool68           |114        |2019-01-14 00:00:00.000|
+|kirijin              |34         |2019-03-25 00:00:00.000|
+|kirijin              |26         |2019-03-29 00:00:00.000|
+|kirijin              |22         |2019-04-05 00:00:00.000|
+|kmontenegro          |230        |2019-01-11 00:00:00.000|
+|kmontenegro          |221        |2019-01-24 00:00:00.000|
+|kmontenegro          |132        |2019-04-07 00:00:00.000|
+|kori                 |113        |2019-01-07 00:00:00.000|
+|kori                 |44         |2019-01-30 00:00:00.000|
+|kori                 |29         |2019-02-01 00:00:00.000|
+|lcnaud               |130        |2019-01-24 00:00:00.000|
+|lcnaud               |118        |2019-02-14 00:00:00.000|
+|lcnaud               |112        |2019-02-02 00:00:00.000|
+|lee_cz               |136        |2019-01-03 00:00:00.000|
+|lee_cz               |123        |2019-02-01 00:00:00.000|
+|lee_cz               |106        |2019-01-26 00:00:00.000|
+|lemarac              |65         |2019-01-11 00:00:00.000|
+|lemarac              |54         |2019-03-20 00:00:00.000|
+|lemarac              |49         |2019-01-14 00:00:00.000|
+|linkmath             |38         |2019-03-04 00:00:00.000|
+|linkmath             |15         |2019-03-09 00:00:00.000|
+|linkmath             |13         |2019-02-17 00:00:00.000|
+|longas               |69         |2019-02-12 00:00:00.000|
+|longas               |33         |2019-02-11 00:00:00.000|
+|longas               |12         |2019-01-22 00:00:00.000|
+|lostmochiguman       |129        |2019-02-20 00:00:00.000|
+|lostmochiguman       |127        |2019-01-25 00:00:00.000|
+|lostmochiguman       |117        |2019-02-22 00:00:00.000|
+|lunt                 |117        |2019-01-04 00:00:00.000|
+|lunt                 |107        |2019-01-15 00:00:00.000|
+|lunt                 |90         |2019-02-19 00:00:00.000|
+|lunu                 |35         |2019-02-25 00:00:00.000|
+|lunu                 |14         |2019-02-28 00:00:00.000|
+|lunu                 |10         |2019-02-20 00:00:00.000|
+|m0rth0n              |1          |2019-04-12 00:00:00.000|
+|maeve1916            |115        |2019-01-24 00:00:00.000|
+|maeve1916            |88         |2019-02-21 00:00:00.000|
+|maeve1916            |84         |2019-03-04 00:00:00.000|
+|malsvent             |83         |2019-04-09 00:00:00.000|
+|malsvent             |73         |2019-02-26 00:00:00.000|
+|malsvent             |67         |2019-01-04 00:00:00.000|
+|mankymusic           |114        |2019-01-23 00:00:00.000|
+|mankymusic           |113        |2019-01-16 00:00:00.000|
+|mankymusic           |112        |2019-03-21 00:00:00.000|
+|marcianofonseca      |62         |2019-03-29 00:00:00.000|
+|marcianofonseca      |46         |2019-04-02 00:00:00.000|
+|marcianofonseca      |43         |2019-03-21 00:00:00.000|
+|martik               |53         |2019-03-08 00:00:00.000|
+|martik               |38         |2019-02-13 00:00:00.000|
+|martik               |36         |2019-02-11 00:00:00.000|
+|meashishsaini        |64         |2019-02-23 00:00:00.000|
+|meashishsaini        |59         |2019-03-01 00:00:00.000|
+|meashishsaini        |42         |2019-02-18 00:00:00.000|
+|meisterhauns         |73         |2019-03-25 00:00:00.000|
+|meisterhauns         |68         |2019-03-28 00:00:00.000|
+|meisterhauns         |66         |2019-03-27 00:00:00.000|
+|miketwiss            |13         |2019-03-03 00:00:00.000|
+|miketwiss            |13         |2019-03-05 00:00:00.000|
+|miketwiss            |13         |2019-03-07 00:00:00.000|
+|milk                 |98         |2019-02-07 00:00:00.000|
+|milk                 |50         |2019-02-09 00:00:00.000|
+|milk                 |49         |2019-01-15 00:00:00.000|
+|minkolazer           |93         |2019-01-18 00:00:00.000|
+|minkolazer           |80         |2019-01-15 00:00:00.000|
+|minkolazer           |68         |2019-01-03 00:00:00.000|
+|mnmontero            |30         |2019-03-01 00:00:00.000|
+|mnmontero            |15         |2019-02-27 00:00:00.000|
+|mnmontero            |4          |2019-03-29 00:00:00.000|
+|naesk                |12         |2019-01-02 00:00:00.000|
+|nicholasbird         |24         |2019-03-09 00:00:00.000|
+|nicholasbird         |8          |2019-02-18 00:00:00.000|
+|nicholasbird         |8          |2019-03-10 00:00:00.000|
+|nitemice             |24         |2019-02-05 00:00:00.000|
+|nitemice             |22         |2019-02-23 00:00:00.000|
+|nitemice             |22         |2019-02-25 00:00:00.000|
+|no31531              |205        |2019-02-15 00:00:00.000|
+|no31531              |128        |2019-01-11 00:00:00.000|
+|no31531              |125        |2019-01-18 00:00:00.000|
+|nsarakas             |43         |2019-04-11 00:00:00.000|
+|nsarakas             |32         |2019-04-14 00:00:00.000|
+|nsarakas             |29         |2019-02-18 00:00:00.000|
+|papabean             |47         |2019-01-06 00:00:00.000|
+|papabean             |27         |2019-01-07 00:00:00.000|
+|papabean             |18         |2019-01-01 00:00:00.000|
+|paxactor             |9          |2019-02-21 00:00:00.000|
+|paxactor             |2          |2019-03-25 00:00:00.000|
+|pbm367               |32         |2019-01-27 00:00:00.000|
+|pbm367               |26         |2019-03-28 00:00:00.000|
+|pbm367               |22         |2019-03-29 00:00:00.000|
+|phamosus             |46         |2019-03-27 00:00:00.000|
+|phamosus             |25         |2019-03-01 00:00:00.000|
+|phamosus             |25         |2019-03-14 00:00:00.000|
+|phdnk                |458        |2019-03-04 00:00:00.000|
+|phdnk                |431        |2019-02-28 00:00:00.000|
+|phdnk                |382        |2019-01-18 00:00:00.000|
+|plaxxx               |139        |2019-02-21 00:00:00.000|
+|plaxxx               |127        |2019-02-22 00:00:00.000|
+|plaxxx               |112        |2019-02-19 00:00:00.000|
+|psyflac              |84         |2019-01-15 00:00:00.000|
+|psyflac              |75         |2019-03-24 00:00:00.000|
+|psyflac              |65         |2019-01-21 00:00:00.000|
+|puigmald             |24         |2019-04-13 00:00:00.000|
+|puigmald             |9          |2019-04-14 00:00:00.000|
+|puigmald             |1          |2019-01-14 00:00:00.000|
+|pyromaniac           |263        |2019-01-10 00:00:00.000|
+|pyromaniac           |215        |2019-01-07 00:00:00.000|
+|pyromaniac           |204        |2019-03-07 00:00:00.000|
+|reverbel             |175        |2019-04-13 00:00:00.000|
+|reverbel             |169        |2019-02-09 00:00:00.000|
+|reverbel             |161        |2019-02-18 00:00:00.000|
+|rmarais              |100        |2019-03-09 00:00:00.000|
+|rmarais              |87         |2019-03-04 00:00:00.000|
+|rmarais              |72         |2019-03-01 00:00:00.000|
+|rmcknt               |49         |2019-02-16 00:00:00.000|
+|rmcknt               |36         |2019-02-15 00:00:00.000|
+|rmcknt               |33         |2019-02-18 00:00:00.000|
+|roman_rem            |74         |2019-03-27 00:00:00.000|
+|roman_rem            |51         |2019-03-12 00:00:00.000|
+|roman_rem            |43         |2019-03-20 00:00:00.000|
+|rweb                 |88         |2019-01-30 00:00:00.000|
+|rweb                 |66         |2019-02-02 00:00:00.000|
+|rweb                 |55         |2019-03-16 00:00:00.000|
+|satanshunger         |78         |2019-01-20 00:00:00.000|
+|satanshunger         |77         |2019-01-19 00:00:00.000|
+|satanshunger         |76         |2019-01-22 00:00:00.000|
+|shaneknysh           |14         |2019-01-23 00:00:00.000|
+|shaneknysh           |14         |2019-01-18 00:00:00.000|
+|shaneknysh           |11         |2019-01-11 00:00:00.000|
+|shogazefan           |46         |2019-02-27 00:00:00.000|
+|shogazefan           |23         |2019-02-28 00:00:00.000|
+|shogazefan           |16         |2019-02-26 00:00:00.000|
+|slideyfoot           |139        |2019-02-18 00:00:00.000|
+|slideyfoot           |120        |2019-04-05 00:00:00.000|
+|slideyfoot           |119        |2019-02-16 00:00:00.000|
+|smreker              |29         |2019-04-13 00:00:00.000|
+|soubrunoalmeida      |166        |2019-01-21 00:00:00.000|
+|soubrunoalmeida      |165        |2019-01-23 00:00:00.000|
+|soubrunoalmeida      |160        |2019-01-22 00:00:00.000|
+|stormruben           |96         |2019-01-05 00:00:00.000|
+|stormruben           |51         |2019-01-17 00:00:00.000|
+|stormruben           |51         |2019-01-29 00:00:00.000|
+|stupidname           |60         |2019-01-14 00:00:00.000|
+|stupidname           |59         |2019-01-15 00:00:00.000|
+|stupidname           |40         |2019-02-09 00:00:00.000|
+|supadood             |72         |2019-03-02 00:00:00.000|
+|supadood             |59         |2019-02-28 00:00:00.000|
+|supadood             |59         |2019-03-01 00:00:00.000|
+|swfloridadude        |73         |2019-01-25 00:00:00.000|
+|swfloridadude        |67         |2019-01-27 00:00:00.000|
+|swfloridadude        |64         |2019-01-11 00:00:00.000|
+|tehpoison            |11         |2019-03-04 00:00:00.000|
+|tehpoison            |9          |2019-02-27 00:00:00.000|
+|tehpoison            |8          |2019-03-03 00:00:00.000|
+|themono              |29         |2019-01-04 00:00:00.000|
+|themono              |26         |2019-01-19 00:00:00.000|
+|themono              |22         |2019-01-17 00:00:00.000|
+|thesebas             |15         |2019-01-20 00:00:00.000|
+|thesebas             |14         |2019-01-21 00:00:00.000|
+|thesebas             |13         |2019-01-18 00:00:00.000|
+|thewabbit1           |63         |2019-04-02 00:00:00.000|
+|thewabbit1           |58         |2019-03-03 00:00:00.000|
+|thewabbit1           |55         |2019-04-01 00:00:00.000|
+|thing-fish           |105        |2019-02-07 00:00:00.000|
+|thing-fish           |103        |2019-02-01 00:00:00.000|
+|thing-fish           |91         |2019-03-05 00:00:00.000|
+|toastal              |111        |2019-01-03 00:00:00.000|
+|toastal              |104        |2019-01-04 00:00:00.000|
+|toastal              |81         |2019-01-02 00:00:00.000|
+|toby3d               |123        |2019-04-01 00:00:00.000|
+|toby3d               |83         |2019-02-20 00:00:00.000|
+|toby3d               |70         |2019-03-22 00:00:00.000|
+|tozapid              |8          |2019-03-13 00:00:00.000|
+|tozapid              |5          |2019-02-18 00:00:00.000|
+|ukko12               |127        |2019-01-25 00:00:00.000|
+|ukko12               |124        |2019-01-01 00:00:00.000|
+|ukko12               |98         |2019-01-15 00:00:00.000|
+|uncoolusername532252 |53         |2019-03-17 00:00:00.000|
+|uncoolusername532252 |49         |2019-03-16 00:00:00.000|
+|uncoolusername532252 |48         |2019-03-11 00:00:00.000|
+|unexpected           |4          |2019-03-04 00:00:00.000|
+|unexpected           |1          |2019-02-27 00:00:00.000|
+|unexpected           |1          |2019-03-08 00:00:00.000|
+|untotooku            |1          |2019-03-19 00:00:00.000|
+|verfyjd              |17         |2019-04-14 00:00:00.000|
+|verfyjd              |13         |2019-04-13 00:00:00.000|
+|verfyjd              |12         |2019-03-16 00:00:00.000|
+|vitalikdobriy        |58         |2019-03-09 00:00:00.000|
+|vitalikdobriy        |45         |2019-04-01 00:00:00.000|
+|vitalikdobriy        |44         |2019-03-05 00:00:00.000|
+|welldread            |208        |2019-03-13 00:00:00.000|
+|welldread            |187        |2019-03-09 00:00:00.000|
+|welldread            |155        |2019-03-11 00:00:00.000|
+|whatisbetter         |58         |2019-02-01 00:00:00.000|
+|whatisbetter         |54         |2019-01-21 00:00:00.000|
+|whatisbetter         |46         |2019-01-22 00:00:00.000|
+|xokoyotzin           |92         |2019-01-01 00:00:00.000|
+|xokoyotzin           |79         |2019-01-08 00:00:00.000|
+|xokoyotzin           |72         |2019-01-10 00:00:00.000|
+|xvicarious           |110        |2019-01-30 00:00:00.000|
+|xvicarious           |83         |2019-01-01 00:00:00.000|
+|xvicarious           |80         |2019-02-07 00:00:00.000|
+|yellams              |165        |2019-02-15 00:00:00.000|
+|yellams              |163        |2019-02-07 00:00:00.000|
+|yellams              |160        |2019-02-08 00:00:00.000|
+|zebedeemcdougal      |82         |2019-02-22 00:00:00.000|
+|zebedeemcdougal      |81         |2019-02-02 00:00:00.000|
+|zebedeemcdougal      |80         |2019-01-11 00:00:00.000|
+|zergut               |120        |2019-01-02 00:00:00.000|
+|zergut               |59         |2019-02-26 00:00:00.000|
+|zergut               |42         |2019-03-05 00:00:00.000|
+|†AtzzkiySotona†      |39         |2019-01-09 00:00:00.000|
+|†AtzzkiySotona†      |37         |2019-03-21 00:00:00.000|
+|†AtzzkiySotona†      |35         |2019-03-19 00:00:00.000|
+
+-- 5. Daily Active Users and Percentage of Active Users
+
+|listen_date            |number_active_users|percentage_active_users|
+|-----------------------|-------------------|-----------------------|
+|2019-01-01 00:00:00.000|72                 |35.64                  |
+|2019-01-02 00:00:00.000|95                 |47.03                  |
+|2019-01-03 00:00:00.000|103                |50.99                  |
+|2019-01-04 00:00:00.000|107                |52.97                  |
+|2019-01-05 00:00:00.000|108                |53.47                  |
+|2019-01-06 00:00:00.000|110                |54.46                  |
+|2019-01-07 00:00:00.000|114                |56.44                  |
+|2019-01-08 00:00:00.000|113                |55.94                  |
+|2019-01-09 00:00:00.000|115                |56.93                  |
+|2019-01-10 00:00:00.000|115                |56.93                  |
+|2019-01-11 00:00:00.000|114                |56.44                  |
+|2019-01-12 00:00:00.000|112                |55.45                  |
+|2019-01-13 00:00:00.000|114                |56.44                  |
+|2019-01-14 00:00:00.000|119                |58.91                  |
+|2019-01-15 00:00:00.000|118                |58.42                  |
+|2019-01-16 00:00:00.000|120                |59.41                  |
+|2019-01-17 00:00:00.000|120                |59.41                  |
+|2019-01-18 00:00:00.000|118                |58.42                  |
+|2019-01-19 00:00:00.000|119                |58.91                  |
+|2019-01-20 00:00:00.000|118                |58.42                  |
+|2019-01-21 00:00:00.000|118                |58.42                  |
+|2019-01-22 00:00:00.000|121                |59.9                   |
+|2019-01-23 00:00:00.000|119                |58.91                  |
+|2019-01-24 00:00:00.000|115                |56.93                  |
+|2019-01-25 00:00:00.000|114                |56.44                  |
+|2019-01-26 00:00:00.000|111                |54.95                  |
+|2019-01-27 00:00:00.000|112                |55.45                  |
+|2019-01-28 00:00:00.000|112                |55.45                  |
+|2019-01-29 00:00:00.000|111                |54.95                  |
+|2019-01-30 00:00:00.000|112                |55.45                  |
+|2019-01-31 00:00:00.000|112                |55.45                  |
+|2019-02-01 00:00:00.000|109                |53.96                  |
+|2019-02-02 00:00:00.000|108                |53.47                  |
+|2019-02-03 00:00:00.000|107                |52.97                  |
+|2019-02-04 00:00:00.000|109                |53.96                  |
+|2019-02-05 00:00:00.000|108                |53.47                  |
+|2019-02-06 00:00:00.000|108                |53.47                  |
+|2019-02-07 00:00:00.000|107                |52.97                  |
+|2019-02-08 00:00:00.000|105                |51.98                  |
+|2019-02-09 00:00:00.000|105                |51.98                  |
+|2019-02-10 00:00:00.000|105                |51.98                  |
+|2019-02-11 00:00:00.000|105                |51.98                  |
+|2019-02-12 00:00:00.000|106                |52.48                  |
+|2019-02-13 00:00:00.000|103                |50.99                  |
+|2019-02-14 00:00:00.000|105                |51.98                  |
+|2019-02-15 00:00:00.000|105                |51.98                  |
+|2019-02-16 00:00:00.000|105                |51.98                  |
+|2019-02-17 00:00:00.000|111                |54.95                  |
+|2019-02-18 00:00:00.000|119                |58.91                  |
+|2019-02-19 00:00:00.000|116                |57.43                  |
+|2019-02-20 00:00:00.000|127                |62.87                  |
+|2019-02-21 00:00:00.000|135                |66.83                  |
+|2019-02-22 00:00:00.000|136                |67.33                  |
+|2019-02-23 00:00:00.000|138                |68.32                  |
+|2019-02-24 00:00:00.000|143                |70.79                  |
+|2019-02-25 00:00:00.000|138                |68.32                  |
+|2019-02-26 00:00:00.000|140                |69.31                  |
+|2019-02-27 00:00:00.000|146                |72.28                  |
+|2019-02-28 00:00:00.000|146                |72.28                  |
+|2019-03-01 00:00:00.000|139                |68.81                  |
+|2019-03-02 00:00:00.000|138                |68.32                  |
+|2019-03-03 00:00:00.000|132                |65.35                  |
+|2019-03-04 00:00:00.000|132                |65.35                  |
+|2019-03-05 00:00:00.000|128                |63.37                  |
+|2019-03-06 00:00:00.000|125                |61.88                  |
+|2019-03-07 00:00:00.000|123                |60.89                  |
+|2019-03-08 00:00:00.000|120                |59.41                  |
+|2019-03-09 00:00:00.000|119                |58.91                  |
+|2019-03-10 00:00:00.000|120                |59.41                  |
+|2019-03-11 00:00:00.000|120                |59.41                  |
+|2019-03-12 00:00:00.000|119                |58.91                  |
+|2019-03-13 00:00:00.000|119                |58.91                  |
+|2019-03-14 00:00:00.000|124                |61.39                  |
+|2019-03-15 00:00:00.000|123                |60.89                  |
+|2019-03-16 00:00:00.000|120                |59.41                  |
+|2019-03-17 00:00:00.000|118                |58.42                  |
+|2019-03-18 00:00:00.000|118                |58.42                  |
+|2019-03-19 00:00:00.000|120                |59.41                  |
+|2019-03-20 00:00:00.000|120                |59.41                  |
+|2019-03-21 00:00:00.000|115                |56.93                  |
+|2019-03-22 00:00:00.000|110                |54.46                  |
+|2019-03-23 00:00:00.000|108                |53.47                  |
+|2019-03-24 00:00:00.000|108                |53.47                  |
+|2019-03-25 00:00:00.000|109                |53.96                  |
+|2019-03-26 00:00:00.000|109                |53.96                  |
+|2019-03-27 00:00:00.000|111                |54.95                  |
+|2019-03-28 00:00:00.000|111                |54.95                  |
+|2019-03-29 00:00:00.000|111                |54.95                  |
+|2019-03-30 00:00:00.000|111                |54.95                  |
+|2019-03-31 00:00:00.000|112                |55.45                  |
+|2019-04-01 00:00:00.000|112                |55.45                  |
+|2019-04-02 00:00:00.000|107                |52.97                  |
+|2019-04-03 00:00:00.000|103                |50.99                  |
+|2019-04-04 00:00:00.000|99                 |49.01                  |
+|2019-04-05 00:00:00.000|97                 |48.02                  |
+|2019-04-06 00:00:00.000|97                 |48.02                  |
+|2019-04-07 00:00:00.000|95                 |47.03                  |
+|2019-04-08 00:00:00.000|93                 |46.04                  |
+|2019-04-09 00:00:00.000|95                 |47.03                  |
+|2019-04-10 00:00:00.000|93                 |46.04                  |
+|2019-04-11 00:00:00.000|92                 |45.54                  |
+|2019-04-12 00:00:00.000|94                 |46.53                  |
+|2019-04-13 00:00:00.000|98                 |48.51                  |
+|2019-04-14 00:00:00.000|99                 |49.01                  |
+|2019-04-15 00:00:00.000|96                 |47.52                  |
