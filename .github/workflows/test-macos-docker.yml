@@ -17,77 +17,40 @@ jobs:
 
       - name: Clean existing Colima files
         run: |
-          # Ensure Colima is stopped
           colima stop || true
           colima delete || true
-          
-          # Clean up any existing files
-          rm -rf ~/.colima
-          rm -rf /Users/runner/.colima
-          
-          # Create fresh directory
+          rm -rf ~/.colima /Users/runner/.colima
           mkdir -p ~/.colima
 
       - name: Install Dependencies
         run: |
-          brew uninstall --force qemu colima docker docker-compose || true
+          brew uninstall --force colima docker docker-compose || true
           brew update
-          brew install qemu
           brew install colima docker docker-compose
-
-      - name: Configure Lima
-        run: |
-          mkdir -p ~/.lima/default
-          cat > ~/.lima/default/lima.yaml << 'EOF'
-          images:
-          - location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img"
-            arch: "x86_64"
-          cpuType: "max"
-          vmType: "qemu"
-          rosetta:
-            enabled: true
-          EOF
 
       - name: Setup Airflow directories
         run: |
-          # Create required directories if they don't exist
-          mkdir -p airflow/logs
-          mkdir -p airflow/dags
-          mkdir -p airflow/data
-          mkdir -p airflow/plugins
-          
-          # Set permissions
-          chmod -R 777 airflow/logs
-          chmod -R 777 airflow/dags
-          chmod -R 777 airflow/data
-          chmod -R 777 airflow/plugins
-          
-          # Show permissions for verification
+          mkdir -p airflow/{logs,dags,data,plugins}
+          chmod -R 777 airflow/{logs,dags,data,plugins}
           ls -la airflow/
 
-      - name: Start Colima
+      - name: Start Colima with vz and Rosetta
         run: |
-          # Start with x86_64 architecture and software acceleration
           colima start \
-            --arch x86_64 \
             --cpu 2 \
             --memory 4 \
             --disk 40 \
-            --vm-type qemu \
+            --vm-type vz \
+            --vz-rosetta \
             --verbose
           
-          # Wait for Colima to be ready
           for i in {1..30}; do
             if colima status; then
               echo "Colima is running!"
               break
             fi
-            if [ $i -eq 30 ]; then
-              echo "Colima failed to start"
-              cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
-              exit 1
-            fi
-            echo "Waiting for Colima to start... (Attempt $i/30)"
+            [ $i -eq 30 ] && echo "Colima failed to start" && exit 1
+            echo "Waiting for Colima... (Attempt $i/30)"
             sleep 10
           done
 
@@ -99,22 +62,14 @@ jobs:
               echo "Docker is running!"
               break
             fi
-            if [ $i -eq 30 ]; then
-              echo "Docker failed to initialize"
-              exit 1
-            fi
+            [ $i -eq 30 ] && echo "Docker failed" && exit 1
             echo "Waiting for Docker... (Attempt $i/30)"
             sleep 10
           done
 
       - name: Build and Start Services
         run: |
-          # Show directory permissions before starting
-          ls -la airflow/
-          
           docker-compose -f airflow/docker-compose.yaml up --build -d
-          
-          # Show running containers and their mounted volumes
           docker-compose -f airflow/docker-compose.yaml ps
           docker volume ls
 
@@ -125,14 +80,8 @@ jobs:
       - name: Run Airflow Health Check
         run: |
           for i in {1..30}; do
-            if curl -sf http://localhost:8080/health; then
-              echo "Airflow is healthy!"
-              exit 0
-            fi
-            if [ $i -eq 30 ]; then
-              echo "Airflow failed to become healthy"
-              exit 1
-            fi
+            curl -sf http://localhost:8080/health && exit 0
+            [ $i -eq 30 ] && echo "Airflow unhealthy" && exit 1
             echo "Waiting for Airflow... (Attempt $i/30)"
             sleep 10
           done
@@ -143,9 +92,6 @@ jobs:
           colima status || true
           docker-compose -f airflow/docker-compose.yaml logs || true
           cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
-          ls -la ~/.colima || true
-          ls -la /Users/runner/.colima/_lima/colima/ || true
-          ls -la airflow/ || true
 
       - name: Cleanup
         if: always()
@@ -153,5 +99,4 @@ jobs:
           docker-compose -f airflow/docker-compose.yaml down || true
           colima stop || true
           colima delete || true
-          rm -rf ~/.colima || true
-          rm -rf /Users/runner/.colima || true
+          rm -rf ~/.colima /Users/runner/.colima
