@@ -17,11 +17,15 @@ jobs:
 
       - name: Clean existing Colima files
         run: |
-          # Ensure Colima is stopped and delete any remnants
+          # Ensure Colima is stopped
           colima stop || true
           colima delete || true
+          
+          # Clean up any existing files
           rm -rf ~/.colima
           rm -rf /Users/runner/.colima
+          
+          # Create fresh directory
           mkdir -p ~/.colima
 
       - name: Install Dependencies
@@ -36,22 +40,36 @@ jobs:
           mkdir -p ~/.lima/default
           cat > ~/.lima/default/lima.yaml << 'EOF'
           images:
-            - location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-arm64.img"
-              arch: "arm64"
+          - location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img"
+            arch: "x86_64"
           cpuType: "max"
           vmType: "qemu"
+          rosetta:
+            enabled: true
           EOF
 
       - name: Setup Airflow directories
         run: |
-          mkdir -p airflow/logs airflow/dags airflow/data airflow/plugins
-          chmod -R 777 airflow/logs airflow/dags airflow/data airflow/plugins
+          # Create required directories if they don't exist
+          mkdir -p airflow/logs
+          mkdir -p airflow/dags
+          mkdir -p airflow/data
+          mkdir -p airflow/plugins
+          
+          # Set permissions
+          chmod -R 777 airflow/logs
+          chmod -R 777 airflow/dags
+          chmod -R 777 airflow/data
+          chmod -R 777 airflow/plugins
+          
+          # Show permissions for verification
           ls -la airflow/
 
       - name: Start Colima
         run: |
-          # Start Colima without forcing x86_64; this will use the native ARM image.
+          # Start with x86_64 architecture and software acceleration
           colima start \
+            --arch x86_64 \
             --cpu 2 \
             --memory 4 \
             --disk 40 \
@@ -93,7 +111,10 @@ jobs:
         run: |
           # Show directory permissions before starting
           ls -la airflow/
+          
           docker-compose -f airflow/docker-compose.yaml up --build -d
+          
+          # Show running containers and their mounted volumes
           docker-compose -f airflow/docker-compose.yaml ps
           docker volume ls
 
