@@ -4,7 +4,7 @@ x-airflow-common: &airflow-common
     context: ../
     dockerfile: ./airflow/Dockerfile
   image: custom-airflow:latest
-  # user: "${AIRFLOW_UID:-1001}"
+  platform: linux/amd64
   environment:
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__FERNET_KEY: "eC7Tow-7QabF29au2XcRa-9Z-DFge7SjUPPpKeqxWd8="
