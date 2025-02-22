@@ -11,92 +11,104 @@ on:
 jobs:
   test-macos:
     runs-on: macos-latest
+    env:
+      DOCKER_BUILDKIT: 1
+      COMPOSE_DOCKER_CLI_BUILD: 1
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Clean existing Colima files
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          platforms: linux/amd64,linux/arm64
+
+      - name: Clean existing Colima setup
         run: |
           colima stop || true
           colima delete || true
-          rm -rf ~/.colima /Users/runner/.colima
+          rm -rf ~/.colima
           mkdir -p ~/.colima
 
       - name: Install Dependencies
         run: |
-          brew uninstall --force colima docker docker-compose || true
-          brew update
-          brew install colima docker docker-compose
+          brew install colima docker docker-compose qemu
 
-      - name: Setup Airflow directories
+      - name: Start Colima
         run: |
-          mkdir -p airflow/{logs,dags,data,plugins}
-          chmod -R 777 airflow/{logs,dags,data,plugins}
-          ls -la airflow/
-
-      - name: Start Colima with vz and Rosetta
-        run: |
-          colima start \
-            --cpu 2 \
-            --memory 4 \
-            --disk 40 \
-            --vm-type vz \
-            --vz-rosetta \
-            --verbose
+          colima start --cpu 4 --memory 8 --disk 60 --arch amd64 --vm-type qemu
           
+          # Wait for Colima to be ready
           for i in {1..30}; do
             if colima status; then
               echo "Colima is running!"
               break
             fi
-            [ $i -eq 30 ] && echo "Colima failed to start" && exit 1
             echo "Waiting for Colima... (Attempt $i/30)"
             sleep 10
           done
 
-      - name: Verify Docker Installation
-        timeout-minutes: 5
+      - name: Setup directories
         run: |
-          for i in {1..30}; do
-            if docker version && docker-compose version && docker info; then
-              echo "Docker is running!"
+          mkdir -p airflow/logs airflow/dags airflow/data airflow/plugins
+          chmod -R 777 airflow/
+
+      - name: Build images
+        run: |
+          docker buildx create --use
+          docker buildx build \
+            --platform linux/amd64 \
+            --load \
+            -t custom-airflow:latest \
+            -f airflow/Dockerfile .
+
+      - name: Start services
+        run: |
+          docker-compose -f airflow/docker-compose.yaml up -d
+          
+          # Monitor startup
+          for i in {1..60}; do
+            if docker-compose -f airflow/docker-compose.yaml ps | grep -q "airflow-init.*Exit 0"; then
+              echo "Initialization completed successfully!"
               break
             fi
-            [ $i -eq 30 ] && echo "Docker failed" && exit 1
-            echo "Waiting for Docker... (Attempt $i/30)"
+            echo "Waiting for initialization... (Attempt $i/60)"
+            docker-compose -f airflow/docker-compose.yaml logs airflow-init
             sleep 10
           done
 
-      - name: Build and Start Services
-        run: |
-          docker-compose -f airflow/docker-compose.yaml up --build -d
-          docker-compose -f airflow/docker-compose.yaml ps
-          docker volume ls
-
-      - name: Check Running Containers
+      - name: Check services
         run: |
           docker ps -a
+          docker-compose -f airflow/docker-compose.yaml logs
 
-      - name: Run Airflow Health Check
+      - name: Verify Airflow
         run: |
           for i in {1..30}; do
-            curl -sf http://localhost:8080/health && exit 0
-            [ $i -eq 30 ] && echo "Airflow unhealthy" && exit 1
+            if curl -sf http://localhost:8080/health; then
+              echo "Airflow is healthy!"
+              exit 0
+            fi
             echo "Waiting for Airflow... (Attempt $i/30)"
             sleep 10
           done
 
-      - name: Debug Logs (If Failure)
+      - name: Debug (on failure)
         if: failure()
         run: |
-          colima status || true
-          docker-compose -f airflow/docker-compose.yaml logs || true
-          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
+          echo "--- Docker Info ---"
+          docker info
+          echo "--- Container Status ---"
+          docker ps -a
+          echo "--- Init Container Logs ---"
+          docker-compose -f airflow/docker-compose.yaml logs airflow-init
+          echo "--- All Logs ---"
+          docker-compose -f airflow/docker-compose.yaml logs
 
       - name: Cleanup
         if: always()
         run: |
-          docker-compose -f airflow/docker-compose.yaml down || true
-          colima stop || true
-          colima delete || true
-          rm -rf ~/.colima /Users/runner/.colima
+          docker-compose -f airflow/docker-compose.yaml down -v
+          colima stop
+          colima delete
