@@ -136,6 +136,8 @@ To inspect and query the data, open the **DuckDB file** using a tool like **DBea
 
 ## Notes
 
+- **Mac Issues:**
+  - If you are unable to run our airflow docker service on mac machines due to permisison issues or status 132 exit during airflow-db init. Please use the python script. I do not have a mac machine, and I could not test it. I tried testing it on github mac runner, but was not able to do it due to architectural compatibility issues.
 - **Permissions Issues:**
 
   - If you face permission errors with mounted volumes, use:
