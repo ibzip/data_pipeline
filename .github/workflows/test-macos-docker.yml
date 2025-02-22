@@ -2,9 +2,11 @@ name: MacOS Docker Test
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   test-macos:
@@ -31,14 +33,12 @@ jobs:
       - name: Configure Lima
         run: |
           mkdir -p ~/.lima/default
-          # IMPORTANT: Remove cpuType: "max" and rosetta: { enabled: true }
-          # to avoid CPU instruction mismatches under QEMU
-          cat > ~/.lima/default/lima.yaml << 'EOF'
-images:
-- location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img"
-  arch: "x86_64"
-vmType: "qemu"
-EOF
+          cat <<-'EOF' > ~/.lima/default/lima.yaml
+          images:
+          - location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img"
+            arch: "x86_64"
+          vmType: "qemu"
+          EOF
 
       - name: Setup Airflow directories
         run: |
@@ -54,15 +54,7 @@ EOF
 
       - name: Start Colima
         run: |
-          colima start \
-            --arch x86_64 \
-            --cpu 2 \
-            --memory 4 \
-            --disk 40 \
-            --vm-type qemu \
-            --verbose
-
-          # Wait up to ~5 minutes for Colima to get fully ready
+          colima start --arch x86_64 --cpu 2 --memory 4 --disk 40 --vm-type qemu --verbose
           for i in {1..30}; do
             if colima status; then
               echo "Colima is running!"
@@ -79,7 +71,6 @@ EOF
 
       - name: Use Colima Docker Context
         run: |
-          # Make sure our docker CLI calls point to Colima
           docker context use colima
 
       - name: Verify Docker Installation
@@ -101,7 +92,6 @@ EOF
       - name: Build and Start Services
         run: |
           ls -la airflow/
-          # Build and run your Airflow containers
           docker-compose -f airflow/docker-compose.yaml up --build -d
           docker-compose -f airflow/docker-compose.yaml ps
           docker volume ls
@@ -111,7 +101,6 @@ EOF
 
       - name: Run Airflow Health Check
         run: |
-          # Poll /health until it's good or fail
           for i in {1..30}; do
             if curl -sf http://localhost:8080/health; then
               echo "Airflow is healthy!"
